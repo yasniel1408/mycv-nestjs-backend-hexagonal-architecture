@@ -1,5 +1,8 @@
 # Hexagonal Architecture
 
+También conocida como Puertos y Adaptadores (Ports and Adapters), se basa en la separación del dominio de negocio de los detalles de implementación. Todas las entradas y salidas de la
+aplicación se exponen a través de puertos.
+
 <img src="./imgs/hexag-architecture.png">
 
 ## Ports

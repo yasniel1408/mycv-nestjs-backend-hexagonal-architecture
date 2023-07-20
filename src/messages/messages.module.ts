@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { MessagesController } from './infrastructure/ports/primary/api-rest/messages.controller';
+import { MessagesController } from './infrastructure/adapters/primary/api/messages.controller';
 
 @Module({
   controllers: [MessagesController],
