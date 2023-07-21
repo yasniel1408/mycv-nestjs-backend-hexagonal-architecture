@@ -17,6 +17,7 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
 
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
+  app.setGlobalPrefix('api/v1');
 
   app.enableCors({
     origin: configService.corsAllowedOrigin,

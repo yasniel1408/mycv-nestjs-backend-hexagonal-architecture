@@ -5,7 +5,7 @@ import { ConfigService } from '@config/config.service';
 export class AppService {
   constructor(private readonly config: ConfigService) {}
 
-  public async getVersion(): Promise<any> {
+  public async getAPIData(): Promise<any> {
     return {
       env: this.config.env,
       version: process.env.API_VERSION,

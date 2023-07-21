@@ -8,11 +8,6 @@ export class AppController {
 
   @Get()
   public healthCheck(): any {
-    return { version: process.env.API_VERSION };
-  }
-
-  @Get('versions')
-  public getVersions(): Promise<any> {
-    return this.appService.getVersion();
+    return this.appService.getAPIData();
   }
 }

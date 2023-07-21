@@ -1,0 +1,24 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "plv-prod",
+            "username": "prd-ua-global-looker-omni",
+            "database": "pv_applications"
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "db",
+            "database": "${workspaceFolder:messages-nestjs-backend}/db.sqlite"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}

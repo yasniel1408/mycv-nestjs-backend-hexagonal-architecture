@@ -5,14 +5,15 @@ import { UsersModule } from '@users/users.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { join } from 'path';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'db.sqlite',
-      entities: [],
-      synchronize: true,
+      entities: [join(__dirname, '../**/**.entity{.ts,.js}')],
+      synchronize: true, // esto solo es para desarrollo
     }),
     ConfigModule,
     UsersModule,
