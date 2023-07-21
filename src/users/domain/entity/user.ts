@@ -2,7 +2,12 @@ import { EmailValueObject } from '@users/domain/value-objects/email.value.object
 import { PasswordValueObject } from '@users/domain/value-objects/password.value.object';
 
 export class User {
-  id: string;
-  email: EmailValueObject;
-  password: PasswordValueObject;
+  constructor(private email: EmailValueObject, private password: PasswordValueObject) {}
+
+  getDataJson() {
+    return {
+      email: this.email.getValue,
+      password: this.password.getValue,
+    };
+  }
 }

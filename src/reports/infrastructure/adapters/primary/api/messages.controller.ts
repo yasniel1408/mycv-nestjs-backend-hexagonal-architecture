@@ -3,9 +3,7 @@ import { MessageRequestDto } from '../../../../infrastructure/models/request/Mes
 import { IMessagesPortController } from '../../../../infrastructure/ports/primary/api/messages.controller';
 
 @Controller('messages')
-export class MessagesController
-  implements IMessagesPortController<MessageRequestDto>
-{
+export class MessagesController implements IMessagesPortController<MessageRequestDto> {
   @Post()
   createMessage(@Body() body: MessageRequestDto): any {
     return body.content;

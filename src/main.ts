@@ -16,7 +16,12 @@ async function bootstrap() {
   // app.set('trust proxy', true); esto no me acuerdo para que era
   const configService = app.get(ConfigService);
 
-  app.useGlobalPipes(new ValidationPipe({ transform: true }));
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      whitelist: true, // esto sirve para evitar que se meta churre en el endpoind
+    }),
+  );
   app.setGlobalPrefix('api/v1');
 
   app.enableCors({

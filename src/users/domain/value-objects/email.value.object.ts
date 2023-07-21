@@ -4,6 +4,7 @@ import { ValueObjectBase } from '@utils/valueObjectBase.abstract';
 export class EmailValueObject extends ValueObjectBase<string> {
   constructor(value: string) {
     super(value);
+    this.setPattern(EMAIL_PATTERN);
     if (!value) {
       throw new Error('Email is required');
     }
@@ -11,8 +12,6 @@ export class EmailValueObject extends ValueObjectBase<string> {
     if (!this.isValid(value)) {
       throw new Error('Email is invalid');
     }
-
-    this.setPattern(EMAIL_PATTERN);
   }
 
   get getDomain(): string {

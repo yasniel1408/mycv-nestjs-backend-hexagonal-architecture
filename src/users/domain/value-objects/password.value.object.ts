@@ -1,4 +1,3 @@
-import { PASSWORD_PATTERN } from '@users/constants';
 import { ValueObjectBase } from '@utils/valueObjectBase.abstract';
 
 export class PasswordValueObject extends ValueObjectBase<string> {
@@ -7,11 +6,5 @@ export class PasswordValueObject extends ValueObjectBase<string> {
     if (!value) {
       throw new Error('Password is required');
     }
-
-    if (!this.isValid(value)) {
-      throw new Error('Password is invalid');
-    }
-
-    this.setPattern(PASSWORD_PATTERN);
   }
 }
