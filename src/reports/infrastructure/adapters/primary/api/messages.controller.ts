@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { MessageRequestDto } from 'src/messages/infrastructure/models/request/MessageRequestDto';
-import { IMessagesPortController } from 'src/messages/infrastructure/ports/primary/api/messages.controller';
+import { MessageRequestDto } from '../../../../infrastructure/models/request/MessageRequestDto';
+import { IMessagesPortController } from '../../../../infrastructure/ports/primary/api/messages.controller';
 
 @Controller('messages')
 export class MessagesController

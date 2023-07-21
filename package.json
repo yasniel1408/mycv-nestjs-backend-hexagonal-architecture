@@ -1,5 +1,5 @@
 {
-  "name": "messages-nestjs-backend",
+  "name": "mycv-nestjs-backend-hexagonal-architecture",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -25,6 +25,7 @@
     "@nestjs/platform-express": "^10.0.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
+    "dotenv": "^16.3.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1"
   },
@@ -66,6 +67,29 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "coverageReporters": [
+      "json",
+      "html",
+      "lcov"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "lines": 90
+      }
+    },
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "^@app(.*)$": "<rootDir>/app$1",
+      "^@config(.*)$": "<rootDir>/config$1",
+      "^@users(.*)$": "<rootDir>/users$1",
+      "^@reports(.*)$": "<rootDir>/reports$1"
+    }
+  },
+  "_moduleAliases": {
+    "@app": "dist/app",
+    "@config": "dist/config",
+    "@users": "dist/users",
+    "@reports": "dist/reports"
   }
 }

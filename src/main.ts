@@ -1,10 +1,30 @@
 import { NestFactory } from '@nestjs/core';
-import { MessagesModule } from './messages/messages.module';
 import { ValidationPipe } from '@nestjs/common';
+import { AppModule } from '@app/app.module';
+import * as path from 'path';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { ConfigService } from '@config/config.service';
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const packageJson = require(path.resolve('package.json'));
 
 async function bootstrap() {
-  const app = await NestFactory.create(MessagesModule);
-  app.useGlobalPipes(new ValidationPipe());
-  await app.listen(3000);
+  process.env.API_VERSION = packageJson.version;
+
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
+  // app.set('trust proxy', true); esto no me acuerdo para que era
+  const configService = app.get(ConfigService);
+
+  app.useGlobalPipes(new ValidationPipe({ transform: true }));
+
+  app.enableCors({
+    origin: configService.corsAllowedOrigin,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+  });
+
+  await app.listen(configService.port);
 }
 bootstrap();
