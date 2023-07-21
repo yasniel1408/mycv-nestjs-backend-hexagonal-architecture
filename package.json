@@ -23,11 +23,15 @@
     "@nestjs/common": "^10.0.0",
     "@nestjs/core": "^10.0.0",
     "@nestjs/platform-express": "^10.0.0",
+    "@nestjs/typeorm": "^10.0.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "dotenv": "^16.3.1",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "shallow-equal-object": "^1.1.1",
+    "sqlite3": "^5.1.6",
+    "typeorm": "^0.3.17"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
@@ -83,13 +87,15 @@
       "^@app(.*)$": "<rootDir>/app$1",
       "^@config(.*)$": "<rootDir>/config$1",
       "^@users(.*)$": "<rootDir>/users$1",
-      "^@reports(.*)$": "<rootDir>/reports$1"
+      "^@reports(.*)$": "<rootDir>/reports$1",
+      "^@utils(.*)$": "<rootDir>/utils$1"
     }
   },
   "_moduleAliases": {
     "@app": "dist/app",
     "@config": "dist/config",
     "@users": "dist/users",
-    "@reports": "dist/reports"
+    "@reports": "dist/reports",
+    "@utils": "dist/utils"
   }
 }

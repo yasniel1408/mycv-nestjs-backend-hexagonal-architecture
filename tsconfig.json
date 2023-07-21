@@ -22,6 +22,7 @@
       "@config/*": ["src/config/*"],
       "@users/*": ["src/users/*"],
       "@reports/*": ["src/reports/*"],
+      "@utils/*": ["src/utils/*"],
     }
   }
 }
