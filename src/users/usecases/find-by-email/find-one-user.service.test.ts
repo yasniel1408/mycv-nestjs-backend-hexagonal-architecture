@@ -1,8 +1,8 @@
 import { Test } from '@nestjs/testing';
-import { SingUpService } from './singup.service';
+import { FindByEmailService } from './find-by-email.service';
 
-describe('SingUpService', () => {
-  let service: SingUpService;
+describe('FindByEmailService', () => {
+  let service: FindByEmailService;
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
@@ -11,7 +11,7 @@ describe('SingUpService', () => {
       providers: [], // Add
     }).compile();
 
-    service = moduleRef.get<SingUpService>(SingUpService);
+    service = moduleRef.get<FindByEmailService>(FindByEmailService);
   });
 
   it('should be defined', () => {

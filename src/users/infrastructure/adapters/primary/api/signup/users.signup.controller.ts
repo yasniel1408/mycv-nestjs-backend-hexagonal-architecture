@@ -1,16 +1,15 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { SingUpRequestDto } from './dto/request/singup.request.dto';
-import { IUsersSingUpController } from '@users/infrastructure/ports/primary/api/users.singup.controller';
+import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { IUsersSingUpController } from '@users/infrastructure/ports/primary/api/singup.controller.interface';
 import { SingUpService } from '@users/usecases/singup/singup.service';
+import { SingUpRequestDto } from './dto/singup.request.dto';
 
 @Controller('auth')
 export class UsersSingUpController implements IUsersSingUpController<SingUpRequestDto, void> {
   constructor(private singUpService: SingUpService) {}
 
   @Post('/signup')
+  @HttpCode(HttpStatus.CREATED)
   signup(@Body() body: SingUpRequestDto) {
     this.singUpService.singUp(body.email, body.password);
-    // eslint-disable-next-line no-console
-    console.log(body);
   }
 }
