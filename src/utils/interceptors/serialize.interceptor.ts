@@ -6,7 +6,7 @@ import { Observable, map } from 'rxjs';
 @Injectable()
 export class SerializeInterceptor implements NestInterceptor {
   constructor(private dto: ResponseBaseDto) {}
-  intercept(context: ExecutionContext, next: CallHandler<any>): Observable<any> | Promise<Observable<any>> {
+  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     return next.handle().pipe(
       map((data: any) => {
         return plainToInstance(this.dto as ClassConstructor<unknown>, data, {

@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UsersSingUpController } from './users.signup.controller';
-import { SingUpService } from '@users/usecases/singup/singup.service';
+import { SignUpService } from '@auth/usecases/signup/signup.service';
 
 describe('UsersController', () => {
   let controller: UsersSingUpController;
@@ -8,7 +8,7 @@ describe('UsersController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [UsersSingUpController],
-      providers: [{ provide: SingUpService, useValue: jest.mock }],
+      providers: [{ provide: SignUpService, useValue: jest.mock }],
     }).compile();
 
     controller = module.get<UsersSingUpController>(UsersSingUpController);

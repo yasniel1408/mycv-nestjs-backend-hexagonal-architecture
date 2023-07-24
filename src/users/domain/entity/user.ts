@@ -4,10 +4,10 @@ import { PasswordValueObject } from '@users/domain/value-objects/password.value.
 export class User {
   constructor(private email: EmailValueObject, private password: PasswordValueObject) {}
 
-  json() {
+  async getJsonData() {
     return {
       email: this.email.getValue,
-      password: this.password.getValue,
+      password: await this.password.encryptPassword(),
     };
   }
 }

@@ -7,7 +7,7 @@ import { IUserRepositoryInterface } from '@users/infrastructure/ports/secondary/
 export class FindUsersService {
   constructor(@InjectRepository(UserEntity) private userRepository: IUserRepositoryInterface<UserEntity>) {}
 
-  async find(email: string): Promise<UserEntity[]> {
+  async find(email?: string): Promise<UserEntity[]> {
     const users: UserEntity[] = await this.userRepository.findBy({ email });
 
     return users;
