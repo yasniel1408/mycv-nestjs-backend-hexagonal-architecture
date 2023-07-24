@@ -1,7 +1,6 @@
-import { IsEmail, IsNotEmpty } from 'class-validator';
-
-export class UserResponseDto {
-  @IsNotEmpty()
-  @IsEmail()
+import { ResponseBaseDto } from '@utils/responseBase.dto.abstract';
+import { Expose } from 'class-transformer';
+export class UserResponseDto extends ResponseBaseDto {
+  @Expose()
   email: string;
 }

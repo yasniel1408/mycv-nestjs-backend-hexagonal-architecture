@@ -11,11 +11,9 @@ export class SingUpService {
   constructor(@InjectRepository(UserEntity) private userRepository: IUserRepositoryInterface<UserEntity>) {}
 
   async singUp(email: string, password: string): Promise<UserEntity> {
-    //run domain, business rules
     const user: User = new User(new EmailValueObject(email), new PasswordValueObject(password));
 
-    //run infra, persist data
-    const userEntity: UserEntity = this.userRepository.create(user.getDataJson() as UserEntity);
+    const userEntity: UserEntity = this.userRepository.create(user.json() as UserEntity);
 
     return this.userRepository.save(userEntity);
   }

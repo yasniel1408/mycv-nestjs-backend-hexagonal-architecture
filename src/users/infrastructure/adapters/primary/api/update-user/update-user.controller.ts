@@ -3,6 +3,7 @@ import { UpdateRequestDto } from './dto/user.request.dto';
 import { UserResponseDto } from './dto/user.response.dto';
 import { IUpdateUserController } from '@users/infrastructure/ports/primary/api/update.controller.interface';
 import { UpdateUserService } from '@users/usecases/update-user/update-user.service';
+import { SerializeResponseDto } from '@users/infrastructure/decorators/serialize.decorator';
 
 @Controller('users')
 export class UpdateUserController implements IUpdateUserController<UpdateRequestDto, UserResponseDto> {
@@ -10,6 +11,7 @@ export class UpdateUserController implements IUpdateUserController<UpdateRequest
 
   @Patch('/:id')
   @HttpCode(HttpStatus.OK)
+  @SerializeResponseDto(UserResponseDto)
   async update(@Param('id') id: string, @Body() body: UpdateRequestDto): Promise<UserResponseDto> {
     return await this.updateUserService.update(parseInt(id), body);
   }

@@ -9,7 +9,7 @@ export class UsersSingUpController implements IUsersSingUpController<SingUpReque
 
   @Post('/signup')
   @HttpCode(HttpStatus.CREATED)
-  signup(@Body() body: SingUpRequestDto) {
+  signup(@Body() body: SingUpRequestDto): void {
     this.singUpService.singUp(body.email, body.password);
   }
 }
