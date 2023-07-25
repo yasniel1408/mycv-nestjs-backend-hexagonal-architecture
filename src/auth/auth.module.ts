@@ -1,20 +1,20 @@
 import { Module } from '@nestjs/common';
-import { SingUpController } from './infrastructure/adapters/primary/api/signup/signup.controller';
+import { SingUpController } from './infrastructure/adapters/primary/http/signup/signup.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from '@users/infrastructure/adapters/secondary/typeorm/dao/user.dao.entity';
-import { FindUsersService } from '@users/usecases/find-users/find-users.service';
-import { SignUpService } from '@auth/usecases/signup/signup.service';
-import { SignInController } from './infrastructure/adapters/primary/api/singin/signin.controller';
-import { SignInService } from './usecases/signin/signin.service';
-import { WhoAmIController } from './infrastructure/adapters/primary/api/whoami/whoami.controller';
-import { SignOutController } from './infrastructure/adapters/primary/api/signout/signout.controller';
+import { FindUsersService } from '@users/application/find-users/find-users.service';
+import { SignUpService } from '@auth/application/signup/signup.service';
+import { SignInController } from './infrastructure/adapters/primary/http/singin/signin.controller';
+import { SignInService } from './application/signin/signin.service';
+import { WhoAmIController } from './infrastructure/adapters/primary/http/whoami/whoami.controller';
+import { SignOutController } from './infrastructure/adapters/primary/http/signout/signout.controller';
 import { JwtModule, JwtService } from '@nestjs/jwt';
-import { JwtStrategy } from './usecases/auth-strategies/jwt.strategy';
+import { JwtStrategy } from './application/auth-strategies/jwt.strategy';
 import { jwtConstants } from './constants';
-import { FindByEmailService } from '@users/usecases/find-by-email/find-by-email.service';
-import { ValidateUserService } from './usecases/validate-user/validate-user.service';
-import { LocalStrategy } from './usecases/auth-strategies/local-strategy';
-import { RefreshJwtStrategy } from './usecases/auth-strategies/refreshToken.strategy';
+import { FindByEmailService } from '@users/application/find-by-email/find-by-email.service';
+import { ValidateUserService } from './application/validate-user/validate-user.service';
+import { LocalStrategy } from './application/auth-strategies/local-strategy';
+import { RefreshJwtStrategy } from './application/auth-strategies/refreshToken.strategy';
 
 @Module({
   imports: [
