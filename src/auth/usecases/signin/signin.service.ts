@@ -1,23 +1,14 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserEntity } from '@users/infrastructure/adapters/secondary/typeorm/dao/user.dao.entity';
-import { FindByEmailService } from '@users/usecases/find-by-email/find-by-email.service';
-import { compare } from 'bcrypt';
+import { ValidateUserService } from '../validate-user/validate-user.service';
 
 @Injectable()
 export class SignInService {
-  constructor(private findByEmailService: FindByEmailService, private jwtService: JwtService) {}
+  constructor(private validateUserService: ValidateUserService, private jwtService: JwtService) {}
 
   async signin(email: string, password: string): Promise<{ user: UserEntity; access_token: string }> {
-    const user = await this.findByEmailService.find(email);
-
-    if (!user) {
-      throw new NotFoundException('User not found!');
-    }
-
-    if (!(await compare(password, user.password))) {
-      throw new BadRequestException('Bad Password!');
-    }
+    const user = await this.validateUserService.validate(email, password);
 
     const payload = { sub: user.id, email: user.email };
 
