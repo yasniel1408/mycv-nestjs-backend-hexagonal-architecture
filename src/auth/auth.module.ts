@@ -6,13 +6,22 @@ import { FindUsersService } from '@users/usecases/find-users/find-users.service'
 import { SignUpService } from '@auth/usecases/signup/signup.service';
 import { SignInController } from './infrastructure/adapters/primary/api/singin/signin.controller';
 import { SignInService } from './usecases/signin/signin.service';
-import { FindOneUserService } from '@users/usecases/find-one-user/find-one-user.service';
 import { WhoAmIController } from './infrastructure/adapters/primary/api/whoami/whoami.controller';
 import { SignOutController } from './infrastructure/adapters/primary/api/signout/signout.controller';
+import { JwtModule, JwtService } from '@nestjs/jwt';
+import { JwtStrategy } from './usecases/jwt-strategies/jwt.strategy';
+import { jwtConstants } from './constants';
+import { FindByEmailService } from '@users/usecases/find-by-email/find-by-email.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UserEntity])],
-  providers: [SignUpService, FindUsersService, SignInService, FindOneUserService],
+  imports: [
+    TypeOrmModule.forFeature([UserEntity]),
+    JwtModule.register({
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: '60s' },
+    }),
+  ],
+  providers: [SignUpService, FindUsersService, SignInService, FindByEmailService, JwtService, JwtStrategy],
   controllers: [SingUpController, SignInController, WhoAmIController, SignOutController],
 })
 export class AuthModule {}

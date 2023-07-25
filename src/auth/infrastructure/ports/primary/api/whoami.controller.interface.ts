@@ -1,3 +1,3 @@
-export interface IWhoAmIController<R, S> {
-  whoami(session: S): Promise<R>;
+export interface IWhoAmIController<R> {
+  whoami(request): R;
 }

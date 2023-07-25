@@ -25,4 +25,8 @@ export class ConfigService {
     }
     return this.envConfig.CORS_ALLOWED_ORIGIN.split(',');
   }
+
+  public get jwtKey() {
+    return this.envConfig.JWT_KEY;
+  }
 }

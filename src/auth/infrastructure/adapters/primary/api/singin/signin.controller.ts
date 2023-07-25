@@ -1,21 +1,21 @@
-import { Body, Controller, HttpCode, HttpStatus, Post, Session } from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post, UseGuards } from '@nestjs/common';
 import { SignUpRequestDto } from './dto/signup.request.dto';
 import { UserResponseDto } from './dto/user.response.dto';
 import { SerializeResponseDto } from '@utils/decorators/serialize.decorator';
 import { SignInService } from '@auth/usecases/signin/signin.service';
 import { IUsersSignInController } from '@auth/infrastructure/ports/primary/api/signin.controller.interface';
+import { Public } from '@utils/decorators/public.decorator';
 
 @Controller('auth')
-export class SignInController implements IUsersSignInController<SignUpRequestDto, UserResponseDto, any> {
+export class SignInController implements IUsersSignInController<SignUpRequestDto, UserResponseDto> {
   constructor(private signInService: SignInService) {}
 
+  @Public()
   @Post('/signin')
   @HttpCode(HttpStatus.OK)
   @SerializeResponseDto(UserResponseDto)
-  async signin(@Body() body: SignUpRequestDto, @Session() session): Promise<UserResponseDto> {
-    const user: UserResponseDto = await this.signInService.signin(body.email, body.password);
-    session.userId = user.id;
-    console.log(session);
-    return user;
+  async signin(@Body() body: SignUpRequestDto): Promise<{ user: UserResponseDto; access_token: string }> {
+    const { user, access_token } = await this.signInService.signin(body.email, body.password);
+    return { user, access_token };
   }
 }

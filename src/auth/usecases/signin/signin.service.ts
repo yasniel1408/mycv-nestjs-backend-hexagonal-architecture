@@ -1,30 +1,28 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { PasswordValueObject } from '@users/domain/value-objects/password.value.object';
+import { JwtService } from '@nestjs/jwt';
 import { UserEntity } from '@users/infrastructure/adapters/secondary/typeorm/dao/user.dao.entity';
-import { IUserRepositoryInterface } from '@users/infrastructure/ports/secondary/typeorm/user.repository';
-import { FindUsersService } from '@users/usecases/find-users/find-users.service';
+import { FindByEmailService } from '@users/usecases/find-by-email/find-by-email.service';
+import { compare } from 'bcrypt';
 
 @Injectable()
 export class SignInService {
-  constructor(
-    private findUsersService: FindUsersService,
-    @InjectRepository(UserEntity) private userRepository: IUserRepositoryInterface<UserEntity>,
-  ) {}
+  constructor(private findByEmailService: FindByEmailService, private jwtService: JwtService) {}
 
-  async signin(email: string, password: string): Promise<UserEntity> {
-    const [userEntity] = await this.findUsersService.find(email);
+  async signin(email: string, password: string): Promise<{ user: UserEntity; access_token: string }> {
+    const user = await this.findByEmailService.find(email);
 
-    if (!userEntity) {
+    if (!user) {
       throw new NotFoundException('User not found!');
     }
 
-    const userEmail: PasswordValueObject = new PasswordValueObject(password);
-
-    if (!(await userEmail.matchPasswords(userEntity.password))) {
+    if (!(await compare(password, user.password))) {
       throw new BadRequestException('Bad Password!');
     }
 
-    return userEntity;
+    const payload = { sub: user.id, email: user.email };
+
+    const access_token = this.jwtService.sign(payload);
+
+    return { user, access_token };
   }
 }

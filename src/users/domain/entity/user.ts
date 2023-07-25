@@ -7,7 +7,7 @@ export class User {
   async getJsonData() {
     return {
       email: this.email.getValue,
-      password: await this.password.encryptPassword(),
+      password: this.password,
     };
   }
 }

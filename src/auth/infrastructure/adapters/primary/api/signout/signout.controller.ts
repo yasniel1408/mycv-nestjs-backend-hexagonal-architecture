@@ -1,11 +1,11 @@
-import { Controller, HttpCode, HttpStatus, Post, Session } from '@nestjs/common';
+import { Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { ISignOutController } from '@auth/infrastructure/ports/primary/api/signout.controller.interface';
 
 @Controller('auth')
-export class SignOutController implements ISignOutController<any> {
+export class SignOutController implements ISignOutController {
   @Post('/signout')
   @HttpCode(HttpStatus.NO_CONTENT)
-  async whoami(@Session() session): Promise<void> {
-    session.userId = null;
+  async whoami(): Promise<any> {
+    return { ok: true };
   }
 }

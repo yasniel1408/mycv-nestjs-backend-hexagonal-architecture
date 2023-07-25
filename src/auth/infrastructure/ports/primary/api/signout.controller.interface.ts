@@ -1,3 +1,3 @@
-export interface ISignOutController<S> {
-  whoami(session: S): Promise<void>;
+export interface ISignOutController {
+  whoami(): Promise<void>;
 }

@@ -8,9 +8,9 @@ export class FindOneUserService {
   constructor(@InjectRepository(UserEntity) private userRepository: IUserRepositoryInterface<UserEntity>) {}
 
   async findOne(id: number): Promise<UserEntity> {
-    // if (!id) {
-    //   throw new NotFoundException('User not found!');
-    // }
+    if (!id) {
+      return null;
+    }
 
     const user: UserEntity = await this.userRepository.findOneBy({ id });
 
