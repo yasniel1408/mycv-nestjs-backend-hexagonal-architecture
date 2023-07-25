@@ -19,14 +19,6 @@ export class ConfigService {
     return this.envConfig.PROJECT_ID;
   }
 
-  public get env(): string {
-    return this.envConfig.ENV;
-  }
-
-  public get isProd(): boolean {
-    return this.envConfig.ENV === 'prod';
-  }
-
   public get corsAllowedOrigin(): string[] | string {
     if (this.envConfig.CORS_ALLOWED_ORIGIN === '*') {
       return this.envConfig.CORS_ALLOWED_ORIGIN;

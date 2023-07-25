@@ -1,17 +1,17 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UsersSignInController } from './users.signin.controller';
+import { SignInController } from './signin.controller';
 import { SignInService } from '@auth/usecases/signin/signin.service';
 
-describe('UsersSignInController', () => {
-  let controller: UsersSignInController;
+describe('SignInController', () => {
+  let controller: SignInController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [UsersSignInController],
+      controllers: [SignInController],
       providers: [{ provide: SignInService, useValue: jest.mock }],
     }).compile();
 
-    controller = module.get<UsersSignInController>(UsersSignInController);
+    controller = module.get<SignInController>(SignInController);
   });
 
   it('should be defined', () => {

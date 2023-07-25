@@ -1,3 +1,3 @@
-export interface IUsersSignInController<P, R> {
-  signin(body: P): Promise<R>;
+export interface IUsersSignInController<P, R, S> {
+  signin(body: P, session: S): Promise<R>;
 }

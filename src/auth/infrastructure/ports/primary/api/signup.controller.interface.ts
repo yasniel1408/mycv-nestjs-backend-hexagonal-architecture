@@ -1,3 +1,3 @@
-export interface IUsersSignUpController<P, R> {
-  signup(body: P): Promise<R>;
+export interface IUsersSignUpController<P, R, S> {
+  signup(body: P, session: S): Promise<R>;
 }

@@ -7,7 +7,7 @@ export class AppService {
 
   public async getAPIData(): Promise<any> {
     return {
-      env: this.config.env,
+      env: process.env.NODE_ENV,
       version: process.env.API_VERSION,
     };
   }
