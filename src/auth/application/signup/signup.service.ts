@@ -6,12 +6,13 @@ import { PasswordValueObject } from '@users/domain/value-objects/password.value.
 import { UserEntity } from '@users/infrastructure/adapters/secondary/typeorm/dao/user.dao.entity';
 import { IUserRepositoryInterface } from '@users/infrastructure/ports/secondary/typeorm/user.repository';
 import { FindUsersService } from '@users/application/find-users/find-users.service';
-import { hash } from 'bcrypt';
+import { EncryptionFacadeService } from '../encryption-facade/encryption.facade.service';
 
 @Injectable()
 export class SignUpService {
   constructor(
     private findUsersService: FindUsersService,
+    private encryptionFacadeService: EncryptionFacadeService,
     @InjectRepository(UserEntity) private userRepository: IUserRepositoryInterface<UserEntity>,
   ) {}
 
@@ -25,7 +26,10 @@ export class SignUpService {
 
     const user: User = new User(new EmailValueObject(email), new PasswordValueObject(password));
 
-    const userEntity: UserEntity = this.userRepository.create({ ...(await user.getJsonData()), password: await hash(password, 10) } as UserEntity);
+    const userEntity: UserEntity = this.userRepository.create({
+      ...(await user.getJsonData()),
+      password: await this.encryptionFacadeService.hash(password),
+    } as UserEntity);
 
     return this.userRepository.save(userEntity);
   }

@@ -17,6 +17,8 @@ import { RefreshJwtStrategy } from './application/auth-strategies/refreshToken.s
 import { ConfigService } from '@config/config.service';
 import { PassportModule } from '@nestjs/passport';
 import { ConfigModule } from '@config/config.module';
+import { EncryptionFacadeService } from './application/encryption-facade/encryption.facade.service';
+import { JwtFacadeService } from './application/jwt-facade/jwt.facade.service';
 
 @Module({
   imports: [
@@ -27,7 +29,7 @@ import { ConfigModule } from '@config/config.module';
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => {
         return {
-          secret: configService.jwtKey,
+          // secret: configService.jwtKey,
           secretOrPrivateKey: configService.jwtKey,
           signOptions: {
             expiresIn: '60s',
@@ -49,8 +51,10 @@ import { ConfigModule } from '@config/config.module';
     LocalStrategy,
     RefreshJwtStrategy,
     ConfigService,
+    EncryptionFacadeService,
+    JwtFacadeService,
   ],
   controllers: [SingUpController, SignInController, WhoAmIController, SignOutController],
-  exports: [JwtStrategy, PassportModule],
+  exports: [JwtStrategy, PassportModule, JwtModule],
 })
 export class AuthModule {}
