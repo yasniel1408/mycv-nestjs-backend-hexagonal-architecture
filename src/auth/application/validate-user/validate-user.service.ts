@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UserEntity } from '@users/infrastructure/adapters/secondary/typeorm/dao/user.dao.entity';
 import { FindByEmailService } from '@users/application/find-by-email/find-by-email.service';
 import { compare } from 'bcrypt';
@@ -11,11 +11,11 @@ export class ValidateUserService {
     const user = await this.findByEmailService.find(email);
 
     if (!user) {
-      throw new NotFoundException('User not found!');
+      throw new UnauthorizedException('Invalid email or password');
     }
 
     if (!(await compare(password, user.password))) {
-      throw new BadRequestException('Bad Password!');
+      throw new UnauthorizedException('Invalid email or password');
     }
 
     return user;

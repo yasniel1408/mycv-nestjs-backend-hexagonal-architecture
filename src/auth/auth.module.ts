@@ -10,18 +10,32 @@ import { WhoAmIController } from './infrastructure/adapters/primary/http/whoami/
 import { SignOutController } from './infrastructure/adapters/primary/http/signout/signout.controller';
 import { JwtModule, JwtService } from '@nestjs/jwt';
 import { JwtStrategy } from './application/auth-strategies/jwt.strategy';
-import { jwtConstants } from './constants';
 import { FindByEmailService } from '@users/application/find-by-email/find-by-email.service';
 import { ValidateUserService } from './application/validate-user/validate-user.service';
 import { LocalStrategy } from './application/auth-strategies/local-strategy';
 import { RefreshJwtStrategy } from './application/auth-strategies/refreshToken.strategy';
+import { ConfigService } from '@config/config.service';
+import { PassportModule } from '@nestjs/passport';
+import { ConfigModule } from '@config/config.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([UserEntity]),
-    JwtModule.register({
-      secret: jwtConstants.secret,
-      signOptions: { expiresIn: '60s' },
+    // Config JWT Auth
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => {
+        return {
+          secret: configService.jwtKey,
+          secretOrPrivateKey: configService.jwtKey,
+          signOptions: {
+            expiresIn: '60s',
+            // expiresIn: '7d',
+          },
+        };
+      },
+      inject: [ConfigService],
     }),
   ],
   providers: [
@@ -34,7 +48,9 @@ import { RefreshJwtStrategy } from './application/auth-strategies/refreshToken.s
     ValidateUserService,
     LocalStrategy,
     RefreshJwtStrategy,
+    ConfigService,
   ],
   controllers: [SingUpController, SignInController, WhoAmIController, SignOutController],
+  exports: [JwtStrategy, PassportModule],
 })
 export class AuthModule {}

@@ -12,7 +12,7 @@ async function bootstrap() {
 
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
-  // app.set('trust proxy', true); esto no me acuerdo para que era
+  app.set('trust proxy', true); //esto no me acuerdo para que era
   const configService = app.get(ConfigService);
 
   app.useGlobalPipes(

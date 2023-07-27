@@ -1,4 +1,4 @@
-import { Body, Controller, HttpCode, HttpStatus, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { SignUpRequestDto } from './dto/signup.request.dto';
 import { UserResponseDto } from './dto/user.response.dto';
 import { SerializeResponseDto } from '@utils/decorators/serialize.decorator';
