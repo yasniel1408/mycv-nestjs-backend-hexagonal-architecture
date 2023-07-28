@@ -1,19 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import { UserEntity } from '@users/infrastructure/adapters/secondary/typeorm/dao/user.dao.entity';
 import { ValidateUserService } from '../validate-user/validate-user.service';
 import { JwtFacadeService } from '../jwt-facade/jwt.facade.service';
 
 @Injectable()
 export class SignInService {
-  constructor(private validateUserService: ValidateUserService, private JwtFacadeService: JwtFacadeService) {}
+  constructor(private validateUserService: ValidateUserService, private jwtFacadeService: JwtFacadeService) {}
 
-  async signin(email: string, password: string): Promise<{ user: UserEntity; access_token: string }> {
+  async signin(email: string, password: string): Promise<string> {
     const user = await this.validateUserService.validate(email, password);
 
     const payload = { sub: user.id, email: user.email };
 
-    const access_token = this.JwtFacadeService.createJwt(payload);
+    const token = this.jwtFacadeService.createJwt(payload);
 
-    return { user, access_token };
+    return token;
   }
 }

@@ -26,13 +26,11 @@
     "rest-client.environmentVariables": {
         "$shared": {
             "version": "v1",
-            "prodToken": "foo",
-            "nonProdToken": "bar",
             "contentType": "application/json"
         },
         "local": {
             "host": "localhost:3000",
-            "token": "{{$shared nonProdToken}}",
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoieWFzbmllbEBnbWFpbC5jb20iLCJpYXQiOjE2OTA1MTUwMjR9.PalLY5k2N1oKUqWnomX__wyGvREt91LJ_u6Pw0iA0nk",
         },
         "production": {
             "host": "example.com",
