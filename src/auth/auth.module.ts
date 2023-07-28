@@ -14,23 +14,21 @@ import { FindByEmailService } from '@users/application/find-by-email/find-by-ema
 import { ValidateUserService } from './application/validate-user/validate-user.service';
 import { LocalStrategy } from './application/auth-strategies/local-strategy';
 import { RefreshJwtStrategy } from './application/auth-strategies/refreshToken.strategy';
-import { ConfigService } from '@config/config.service';
 import { PassportModule } from '@nestjs/passport';
-import { ConfigModule } from '@config/config.module';
 import { EncryptionFacadeService } from './application/encryption-facade/encryption.facade.service';
 import { JwtFacadeService } from './application/jwt-facade/jwt.facade.service';
+import { ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([UserEntity]),
     // Config JWT Auth
-    PassportModule.register({ defaultStrategy: 'jwt' }),
+    PassportModule,
     JwtModule.registerAsync({
-      imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => {
         return {
           // secret: configService.jwtKey,
-          secretOrPrivateKey: configService.jwtKey,
+          secretOrPrivateKey: configService.getOrThrow<string>('JWT_KEY'),
           signOptions: {
             expiresIn: '60s',
             // expiresIn: '7d',
@@ -50,7 +48,6 @@ import { JwtFacadeService } from './application/jwt-facade/jwt.facade.service';
     ValidateUserService,
     LocalStrategy,
     RefreshJwtStrategy,
-    ConfigService,
     EncryptionFacadeService,
     JwtFacadeService,
   ],

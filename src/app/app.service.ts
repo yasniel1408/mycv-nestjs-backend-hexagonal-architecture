@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@config/config.service';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AppService {
@@ -7,8 +7,8 @@ export class AppService {
 
   public async getAPIData(): Promise<any> {
     return {
-      env: process.env.NODE_ENV,
-      version: process.env.API_VERSION,
+      env: this.config.getOrThrow<string>('NODE_ENV'),
+      version: this.config.getOrThrow<string>('API_VERSION'),
     };
   }
 }

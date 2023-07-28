@@ -20,5 +20,24 @@
             "database": "${workspaceFolder:messages-nestjs-backend}/db.sqlite"
         }
     ],
-    "sqltools.useNodeRuntime": true
+    "sqltools.useNodeRuntime": true,
+
+    // Configurar variables de entorno para rest-client
+    "rest-client.environmentVariables": {
+        "$shared": {
+            "version": "v1",
+            "prodToken": "foo",
+            "nonProdToken": "bar",
+            "contentType": "application/json"
+        },
+        "local": {
+            "host": "localhost:3000",
+            "token": "{{$shared nonProdToken}}",
+        },
+        "production": {
+            "host": "example.com",
+            "token": "{{$shared prodToken}}",
+        }
+    }
 }
+

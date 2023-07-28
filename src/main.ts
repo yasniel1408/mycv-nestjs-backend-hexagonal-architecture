@@ -3,7 +3,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from '@app/app.module';
 import * as path from 'path';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { ConfigService } from '@config/config.service';
+import { ConfigService } from '@nestjs/config';
 
 const packageJson = require(path.resolve('package.json'));
 
@@ -24,12 +24,12 @@ async function bootstrap() {
   app.setGlobalPrefix('api/v1');
 
   app.enableCors({
-    origin: configService.corsAllowedOrigin,
+    origin: configService.getOrThrow<string>('CORS_ALLOWED_ORIGIN'),
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 204,
   });
 
-  await app.listen(configService.port);
+  await app.listen(configService.getOrThrow<number>('PORT'));
 }
 bootstrap();

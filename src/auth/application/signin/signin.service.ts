@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
 import { UserEntity } from '@users/infrastructure/adapters/secondary/typeorm/dao/user.dao.entity';
 import { ValidateUserService } from '../validate-user/validate-user.service';
-import { ConfigService } from '@config/config.service';
 import { JwtFacadeService } from '../jwt-facade/jwt.facade.service';
 
 @Injectable()
