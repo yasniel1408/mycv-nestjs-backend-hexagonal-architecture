@@ -13,7 +13,7 @@ import { UpdateUserService } from './application/update-user/update-user.service
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity])],
-  exports: [FindUsersService, FindOneUserService],
+  exports: [FindUsersService, FindOneUserService, FindByEmailService],
   providers: [FindOneUserService, FindUsersService, FindByEmailService, RemoveUserService, UpdateUserService],
   controllers: [FindOneUserController, FindUsersController, RemoveUserController, UpdateUserController],
 })

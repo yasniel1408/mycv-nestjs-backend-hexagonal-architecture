@@ -12,7 +12,7 @@ import { join } from 'path';
 
 import * as dotenv from 'dotenv';
 import { APP_GUARD } from '@nestjs/core';
-import { JwtAuthGuard } from '@utils/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '@auth/infrastructure/guards/jwt-auth.guard';
 dotenv.config();
 
 @Module({
@@ -48,7 +48,7 @@ dotenv.config();
   providers: [
     AppService,
     {
-      provide: APP_GUARD,
+      provide: APP_GUARD, // Proteger la app con JWT, por defautl debes estar autenticado para acceder a cualquier ruta
       useClass: JwtAuthGuard,
     },
   ],

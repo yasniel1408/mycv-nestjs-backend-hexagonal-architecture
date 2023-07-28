@@ -6,7 +6,7 @@ import { compare, genSalt, hash } from 'bcrypt';
 export class EncryptionFacadeService {
   constructor(private readonly configService: ConfigService) {}
   async hash(plain: string): Promise<string> {
-    return hash(plain, await genSalt(this.configService.getOrThrow<number>('SALT_ROUNDS')));
+    return hash(plain, await genSalt(Number(this.configService.getOrThrow<number>('SALT_ROUNDS'))));
   }
   async compare(plain: string, encrypted: string): Promise<boolean> {
     return compare(plain, encrypted);

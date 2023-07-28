@@ -3,8 +3,9 @@ import { SignInResponseDto } from './dto/signin.response.dto';
 import { SerializeResponseDto } from '@utils/decorators/serialize.decorator';
 import { SignInService } from '@auth/application/signin/signin.service';
 import { IUsersSignInController } from '@auth/infrastructure/ports/primary/http/signin.controller.interface';
-import { Public } from '@utils/decorators/public.decorator';
+
 import { SignInRequestDto } from './dto/signin.request.dto';
+import { Public } from '@auth/infrastructure/decorators/public.decorator';
 
 @Controller('auth')
 export class SignInController implements IUsersSignInController<SignInRequestDto, SignInResponseDto> {

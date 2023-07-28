@@ -1,10 +1,10 @@
-import { Body, Controller, HttpCode, HttpStatus, Post, Session } from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { SignUpRequestDto } from './dto/signup.request.dto';
 import { SignUpService } from '@auth/application/signup/signup.service';
 import { IUsersSignUpController } from '@auth/infrastructure/ports/primary/http/signup.controller.interface';
 import { UserResponseDto } from './dto/user.response.dto';
 import { SerializeResponseDto } from '@utils/decorators/serialize.decorator';
-import { Public } from '@utils/decorators/public.decorator';
+import { Public } from '@auth/infrastructure/decorators/public.decorator';
 
 @Controller('auth')
 export class SingUpController implements IUsersSignUpController<SignUpRequestDto, UserResponseDto> {

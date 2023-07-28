@@ -10,7 +10,6 @@ import { WhoAmIController } from './infrastructure/adapters/primary/http/whoami/
 import { SignOutController } from './infrastructure/adapters/primary/http/signout/signout.controller';
 import { JwtModule, JwtService } from '@nestjs/jwt';
 import { JwtStrategy } from './application/auth-strategies/jwt.strategy';
-import { FindByEmailService } from '@users/application/find-by-email/find-by-email.service';
 import { ValidateUserService } from './application/validate-user/validate-user.service';
 import { LocalStrategy } from './application/auth-strategies/local-strategy';
 import { RefreshJwtStrategy } from './application/auth-strategies/refreshToken.strategy';
@@ -18,6 +17,10 @@ import { PassportModule } from '@nestjs/passport';
 import { EncryptionFacadeService } from './application/encryption-facade/encryption.facade.service';
 import { JwtFacadeService } from './application/jwt-facade/jwt.facade.service';
 import { ConfigService } from '@nestjs/config';
+import { CurrentUserInterceptor } from './infrastructure/interceptors/current-user.interceptor';
+import { FindOneUserService } from '@users/application/find-one-user/find-one-user.service';
+import { FindByEmailService } from '@users/application/find-by-email/find-by-email.service';
+import { APP_INTERCEPTOR } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -42,6 +45,7 @@ import { ConfigService } from '@nestjs/config';
     SignUpService,
     FindUsersService,
     SignInService,
+    FindOneUserService,
     FindByEmailService,
     JwtService,
     JwtStrategy,
@@ -50,8 +54,11 @@ import { ConfigService } from '@nestjs/config';
     RefreshJwtStrategy,
     EncryptionFacadeService,
     JwtFacadeService,
+    // {
+    //   provide: APP_INTERCEPTOR, // Interceptor para recuperar la información del usuario fresca de la base de datos
+    //   useClass: CurrentUserInterceptor,
+    // },
   ],
   controllers: [SingUpController, SignInController, WhoAmIController, SignOutController],
-  exports: [JwtStrategy, PassportModule, JwtModule],
 })
 export class AuthModule {}

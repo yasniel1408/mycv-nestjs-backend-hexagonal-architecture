@@ -1,5 +1,5 @@
 import { EMAIL_PATTERN } from '@users/constants';
-import { ValueObjectBase } from '@utils/valueObjectBase.abstract';
+import { ValueObjectBase } from '@utils/value-object-base.abstract';
 
 export class EmailValueObject extends ValueObjectBase<string> {
   constructor(value: string) {

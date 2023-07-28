@@ -1,10 +1,10 @@
 
-GET http://{{host}}/api/v1/users HTTP/1.1
+GET http://{{host}}/api/{{version}}/users HTTP/1.1
 Content-Type: {{contentType}}
 Authorization: Bearer {{token}}
 
 ###
 
-GET http://{{host}}/api/v1/users?email=yasniel@gmail.com HTTP/1.1
+GET http://{{host}}/api/{{version}}/users?email=yasniel@gmail.com HTTP/1.1
 Content-Type: {{contentType}}
 Authorization: Bearer {{token}}

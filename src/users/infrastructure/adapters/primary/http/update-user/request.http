@@ -1,5 +1,5 @@
 
-PATCH http://{{host}}/api/v1/users/1 HTTP/1.1
+PATCH http://{{host}}/api/{{version}}/users/1 HTTP/1.1
 Content-Type: {{contentType}}
 
 {
