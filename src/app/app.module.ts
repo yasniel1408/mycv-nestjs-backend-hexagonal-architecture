@@ -29,7 +29,16 @@ dotenv.config();
             synchronize: true, // esto solo es para desarrollo
             logging: true, // esto es para debugear
           }
-        : {},
+        : {
+            // type: 'mysql',
+            // host: 'localhost',
+            // port: 3306,
+            // username: 'root',
+            // password: 'root',
+            // database: 'test',
+            // entities: [],
+            // synchronize: true,
+          },
     ),
     UsersModule,
     ReportsModule,
