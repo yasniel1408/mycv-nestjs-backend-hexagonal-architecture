@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { WhoAmIController } from './whoami.controller';
-import { FindOneUserService } from '@users/application/find-one-user/find-one-user.service';
 
 describe('WhoAmIController', () => {
   let controller: WhoAmIController;
@@ -8,7 +7,7 @@ describe('WhoAmIController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [WhoAmIController],
-      providers: [{ provide: FindOneUserService, useValue: jest.mock }],
+      providers: [],
     }).compile();
 
     controller = module.get<WhoAmIController>(WhoAmIController);

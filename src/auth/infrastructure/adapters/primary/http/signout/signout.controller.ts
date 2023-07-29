@@ -1,5 +1,5 @@
 import { Controller, HttpCode, HttpStatus, Post, Request } from '@nestjs/common';
-import { ISignOutController } from '@auth/infrastructure/ports/primary/http/signout.controller.interface';
+import { ISignOutController } from '@auth/domain/ports/primary/http/signout.controller.interface';
 
 @Controller('auth')
 export class SignOutController implements ISignOutController {

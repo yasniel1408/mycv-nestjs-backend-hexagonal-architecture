@@ -8,4 +8,8 @@ export class UpdateRequestDto {
   @IsOptional()
   @IsString()
   password?: string;
+
+  @IsOptional()
+  @IsString()
+  name?: string;
 }

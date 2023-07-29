@@ -1,14 +1,14 @@
 import { CallHandler, ExecutionContext, NestInterceptor } from '@nestjs/common';
-import { FindOneUserService } from '@users/application/find-one-user/find-one-user.service';
+import { FindByEmailService } from '@auth/application/services/find-by-email/find-by-email.service';
 import { Observable } from 'rxjs';
 
 export class CurrentUserInterceptor implements NestInterceptor {
-  constructor(private findOneUserService: FindOneUserService) {}
+  constructor(private readonly findByEmailService: FindByEmailService) {}
 
   async intercept(context: ExecutionContext, next: CallHandler): Promise<Observable<any>> {
     const request = context.switchToHttp().getRequest();
     if (request.user) {
-      const user = await this.findOneUserService.findOne(request.user.id);
+      const user = await this.findByEmailService.find(request.user.email);
       request.user = user;
     }
 

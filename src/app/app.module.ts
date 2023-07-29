@@ -25,7 +25,7 @@ dotenv.config();
         ? {
             type: 'sqlite',
             database: 'db.sqlite',
-            entities: [join(__dirname, '../**/**.entity{.ts,.js}')],
+            entities: [join(__dirname, '../**/**.dao{.ts,.js}')],
             synchronize: true, // esto solo es para desarrollo
             logging: true, // esto es para debugear
           }

@@ -105,7 +105,8 @@
       "^@users(.*)$": "<rootDir>/users$1",
       "^@auth(.*)$": "<rootDir>/auth$1",
       "^@reports(.*)$": "<rootDir>/reports$1",
-      "^@utils(.*)$": "<rootDir>/utils$1"
+      "^@utils(.*)$": "<rootDir>/utils$1",
+      "^@shared(.*)$": "<rootDir>/shared$1"
     }
   },
   "_moduleAliases": {
@@ -114,6 +115,7 @@
     "@users": "dist/users",
     "@auth": "dist/auth",
     "@reports": "dist/reports",
+    "@shared": "dist/shared",
     "@utils": "dist/utils"
   }
 }

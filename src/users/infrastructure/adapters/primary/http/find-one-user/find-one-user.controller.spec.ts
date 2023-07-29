@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { FindOneUserController } from './find-one-user.controller';
-import { FindOneUserService } from '@users/application/find-one-user/find-one-user.service';
+import { FindOneUserService } from '@users/application/services/find-one-user/find-one-user.service';
 
 describe('UsersController', () => {
   let controller: FindOneUserController;

@@ -1,30 +1,28 @@
 import { Module } from '@nestjs/common';
 import { SingUpController } from './infrastructure/adapters/primary/http/signup/signup.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from '@users/infrastructure/adapters/secondary/typeorm/dao/user.dao.entity';
-import { FindUsersService } from '@users/application/find-users/find-users.service';
-import { SignUpService } from '@auth/application/signup/signup.service';
+import { SignUpService } from '@auth/application/services/signup/signup.service';
 import { SignInController } from './infrastructure/adapters/primary/http/singin/signin.controller';
-import { SignInService } from './application/signin/signin.service';
+import { SignInService } from './application/services/signin/signin.service';
 import { WhoAmIController } from './infrastructure/adapters/primary/http/whoami/whoami.controller';
 import { SignOutController } from './infrastructure/adapters/primary/http/signout/signout.controller';
 import { JwtModule, JwtService } from '@nestjs/jwt';
-import { JwtStrategy } from './application/auth-strategies/jwt.strategy';
-import { ValidateUserService } from './application/validate-user/validate-user.service';
-import { LocalStrategy } from './application/auth-strategies/local-strategy';
-import { RefreshJwtStrategy } from './application/auth-strategies/refreshToken.strategy';
+import { JwtStrategy } from './infrastructure/auth-strategies/jwt.strategy';
+import { ValidateUserService } from './application/services/validate-user/validate-user.service';
+import { LocalStrategy } from './infrastructure/auth-strategies/local-strategy';
+import { RefreshJwtStrategy } from './infrastructure/auth-strategies/refreshToken.strategy';
 import { PassportModule } from '@nestjs/passport';
-import { EncryptionFacadeService } from './application/encryption-facade/encryption.facade.service';
-import { JwtFacadeService } from './application/jwt-facade/jwt.facade.service';
+import { EncryptionFacadeService } from './application/services/encryption-facade/encryption.facade.service';
+import { JwtFacadeService } from './application/services/jwt-facade/jwt.facade.service';
 import { ConfigService } from '@nestjs/config';
-import { CurrentUserInterceptor } from './infrastructure/interceptors/current-user.interceptor';
-import { FindOneUserService } from '@users/application/find-one-user/find-one-user.service';
-import { FindByEmailService } from '@users/application/find-by-email/find-by-email.service';
-import { APP_INTERCEPTOR } from '@nestjs/core';
+import { UserDao } from '@auth/infrastructure/adapters/secondary/typeorm/dao/user.dao';
+import { FindUsersService } from './application/services/find-users/find-users.service';
+import { FindByEmailService } from './application/services/find-by-email/find-by-email.service';
+import { CreateUserService } from './application/usecases/create-user/create-user.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([UserEntity]),
+    TypeOrmModule.forFeature([UserDao]),
     // Config JWT Auth
     PassportModule,
     JwtModule.registerAsync({
@@ -45,7 +43,6 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
     SignUpService,
     FindUsersService,
     SignInService,
-    FindOneUserService,
     FindByEmailService,
     JwtService,
     JwtStrategy,
@@ -54,6 +51,7 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
     RefreshJwtStrategy,
     EncryptionFacadeService,
     JwtFacadeService,
+    CreateUserService,
     // {
     //   provide: APP_INTERCEPTOR, // Interceptor para recuperar la información del usuario fresca de la base de datos
     //   useClass: CurrentUserInterceptor,
