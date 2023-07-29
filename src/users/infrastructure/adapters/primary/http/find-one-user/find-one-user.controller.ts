@@ -12,6 +12,6 @@ export class FindOneUserController implements IFindOneUserController<string, Use
   @HttpCode(HttpStatus.OK)
   @SerializeResponseDto(UserResponseDto)
   async findOneUser(@Param('id') id: string): Promise<UserResponseDto> {
-    return this.findOneUserService.findOne(parseInt(id));
+    return await this.findOneUserService.findOne(parseInt(id));
   }
 }

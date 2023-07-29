@@ -8,9 +8,6 @@ export class UserDao {
   @Column()
   email: string;
 
-  @Column()
-  password: string;
-
   @Column({
     unique: false,
     nullable: true,
