@@ -2,11 +2,10 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from '@app/app.module';
+import { setupApp } from '@src/setup-app';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
-
-  process.env.API_VERSION = '1.0.0';
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -14,10 +13,11 @@ describe('AppController (e2e)', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
+    setupApp(app);
     await app.init();
   });
 
   it('/ (GET)', () => {
-    return request(app.getHttpServer()).get('/').expect(200).expect({ version: '1.0.0', env: 'test' });
+    return request(app.getHttpServer()).get('/api/v1').expect(200).expect({ version: '0.0.1', env: 'test' });
   });
 });

@@ -1,35 +1,13 @@
-import { NestFactory } from '@nestjs/core';
-import { ValidationPipe } from '@nestjs/common';
-import { AppModule } from '@app/app.module';
-import * as path from 'path';
-import { NestExpressApplication } from '@nestjs/platform-express';
 import { ConfigService } from '@nestjs/config';
-
-const packageJson = require(path.resolve('package.json'));
+import { setupApp } from './setup-app';
+import { NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { AppModule } from '@app/app.module';
 
 async function bootstrap() {
-  process.env.API_VERSION = packageJson.version;
-
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
-
-  app.set('trust proxy', true); //esto no me acuerdo para que era
+  const app: NestExpressApplication = await NestFactory.create<NestExpressApplication>(AppModule);
   const configService = app.get(ConfigService);
-
-  app.useGlobalPipes(
-    new ValidationPipe({
-      transform: true,
-      whitelist: true, // esto sirve para evitar que se meta churre en el endpoind
-    }),
-  );
-  app.setGlobalPrefix('api/v1');
-
-  app.enableCors({
-    origin: configService.getOrThrow<string>('CORS_ALLOWED_ORIGIN'),
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
-  });
-
+  setupApp(app);
   await app.listen(configService.getOrThrow<number>('PORT'));
 }
 bootstrap();

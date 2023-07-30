@@ -1,4 +1,4 @@
-import { AfterInsert, AfterRemove, AfterUpdate, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('User')
 export class UserDao {
@@ -14,21 +14,21 @@ export class UserDao {
   })
   name?: string;
 
-  @AfterInsert()
-  logInstert() {
-    // eslint-disable-next-line no-console
-    console.log('Insert ID: ', this.id);
-  }
+  // @AfterInsert()
+  // logInstert() {
+  //   // eslint-disable-next-line no-console
+  //   console.log('Insert ID: ', this.id);
+  // }
 
-  @AfterUpdate()
-  logUpdate() {
-    // eslint-disable-next-line no-console
-    console.log('Update ID: ', this.id);
-  }
+  // @AfterUpdate()
+  // logUpdate() {
+  //   // eslint-disable-next-line no-console
+  //   console.log('Update ID: ', this.id);
+  // }
 
-  @AfterRemove()
-  logRemove() {
-    // eslint-disable-next-line no-console
-    console.log('Remove ID: ', this.id);
-  }
+  // @AfterRemove()
+  // logRemove() {
+  //   // eslint-disable-next-line no-console
+  //   console.log('Remove ID: ', this.id);
+  // }
 }
