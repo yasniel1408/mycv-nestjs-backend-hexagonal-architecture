@@ -1,5 +1,7 @@
 import { Test } from '@nestjs/testing';
 import { JwtFacadeService } from './jwt.facade.service';
+import { ConfigService } from '@nestjs/config';
+import { JwtService } from '@nestjs/jwt';
 
 describe('JwtFacadeService', () => {
   let service: JwtFacadeService;
@@ -8,7 +10,7 @@ describe('JwtFacadeService', () => {
     const moduleRef = await Test.createTestingModule({
       imports: [], // Add
       controllers: [], // Add
-      providers: [], // Add
+      providers: [JwtFacadeService, JwtService, { provide: ConfigService, useValue: jest.mock }], // Add
     }).compile();
 
     service = moduleRef.get<JwtFacadeService>(JwtFacadeService);
