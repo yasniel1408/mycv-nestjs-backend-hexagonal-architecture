@@ -9,7 +9,7 @@ describe('UsersController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [UpdateUserController],
-      providers: [{ provide: UpdateUserService, useValue: { update: async (id) => ({ id: 1, email: 'test@gmail.com', name: 'Test' } as UserDao) } }],
+      providers: [{ provide: UpdateUserService, useValue: { update: async () => ({ id: 1, email: 'test@gmail.com', name: 'Test' } as UserDao) } }],
     }).compile();
 
     controller = module.get<UpdateUserController>(UpdateUserController);
