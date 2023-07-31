@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  api:
+    container_name: api
+    build:
+      context: ./
+      dockerfile: ./docker/development.Dockerfile
+    environment:
+      PORT: 3000
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./:/usr/src
+      - /usr/src/node_modules
+#   db:
+#     container_name: db
+#     image: mysql:5.7
+#     environment:
+#       MYSQL_ROOT_PASSWORD: root
+#       MYSQL_DATABASE: db
+#       MYSQL_USER: user
+#       MYSQL_PASSWORD: password
+#     ports:
+#       - '3306:3306'
+#     volumes:
+#       - ./db:/docker-entrypoint-initdb.d
