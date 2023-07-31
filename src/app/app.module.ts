@@ -4,13 +4,13 @@ import { UsersModule } from '@users/users.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from '@auth/auth.module';
-import { ConfigModule } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from '@auth/infrastructure/guards/jwt-auth.guard';
 import { join } from 'path';
-import { isDev, isLocal, isProd, isQa, isStaging } from '@src/config/constants';
+import { isProd } from '@src/config/constants';
 dotenv.config();
 
 @Module({
@@ -22,40 +22,23 @@ dotenv.config();
       cache: true,
     }),
     // Database
-    TypeOrmModule.forRoot(
-      isDev && isLocal && isStaging
-        ? {
-            type: 'sqlite',
-            database: 'db.sqlite',
-            entities: [join(__dirname, '../../**/**.dao{.ts,.js}')],
-            synchronize: true, // esto solo es para desarrollo
-            logging: false, // esto es para debugear las consultas a la base de datos
-            migrations: ['../../**/**.migration{.ts,.js}'],
-            subscribers: ['../../**/**.subscriber{.ts,.js}'],
-          }
-        : isQa
-        ? {
-            type: 'sqlite',
-            database: ':memory:',
-            entities: [join(__dirname, '../../**/**.dao{.ts,.js}')],
-            synchronize: true, // esto solo es para desarrollo
-            logging: false, // esto es para debugear las consultas a la base de datos
-          }
-        : isProd
-        ? {
-            type: 'mysql',
-            host: 'localhost',
-            port: 3306,
-            username: 'root',
-            password: 'root',
-            database: 'test',
-            entities: [join(__dirname, '../../**/**.dao{.ts,.js}')],
-            synchronize: false,
-            migrations: ['../../**/**.migration{.ts,.js}'],
-            subscribers: ['../../**/**.subscriber{.ts,.js}'],
-          }
-        : {},
-    ),
+    TypeOrmModule.forRootAsync({
+      useFactory: async (configService: ConfigService) =>
+        ({
+          type: configService.getOrThrow<string>('DB_TYPE'),
+          host: configService.getOrThrow<string>('DB_HOST'),
+          port: configService.getOrThrow<string>('DB_PORT'),
+          username: configService.getOrThrow<string>('DB_USERNAME'),
+          password: configService.getOrThrow<string>('DB_PASSWORD'),
+          database: configService.getOrThrow<string>('DB_DATABASE'),
+          entities: [join(__dirname, '../**/**.dao{.ts,.js}')],
+          migrations: [join(__dirname, '../**/**.migration{.ts,.js}')],
+          subscribers: [join(__dirname, '../**/**.subscriber{.ts,.js}')],
+          synchronize: isProd ? false : true, // esto solo es para desarrollo
+          logging: false, // esto es para debugear las consultas a la base de datos
+        } as TypeOrmModuleOptions),
+      inject: [ConfigService],
+    }),
     UsersModule,
     ReportsModule,
     AuthModule,

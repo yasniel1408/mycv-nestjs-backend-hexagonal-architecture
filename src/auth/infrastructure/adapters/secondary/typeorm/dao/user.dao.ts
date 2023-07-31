@@ -10,7 +10,4 @@ export class UserDao {
 
   @Column()
   password?: string;
-
-  // @Column({ default: true })
-  // isActive: boolean;
 }

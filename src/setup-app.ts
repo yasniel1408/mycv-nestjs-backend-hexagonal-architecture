@@ -6,7 +6,7 @@ export const setupApp = (app: any) => {
   const packageJson = require(path.resolve('package.json'));
   process.env.API_VERSION = packageJson.version;
 
-  app.set('trust proxy', true); //esto no me acuerdo para que era
+  // app.set('trust proxy', true); //esto no me acuerdo para que era
 
   app.useGlobalPipes(
     new ValidationPipe({

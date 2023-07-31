@@ -15,7 +15,7 @@ import { PassportModule } from '@nestjs/passport';
 import { EncryptionFacadeService } from './application/services/encryption-facade/encryption.facade.service';
 import { JwtFacadeService } from './application/services/jwt-facade/jwt.facade.service';
 import { ConfigService } from '@nestjs/config';
-import { UserDao } from '@auth/infrastructure/adapters/secondary/typeorm/dao/user.dao';
+import { UserDao } from './infrastructure/adapters/secondary/typeorm/dao/user.dao';
 import { FindUsersService } from './application/services/find-users/find-users.service';
 import { FindByEmailService } from './application/services/find-by-email/find-by-email.service';
 import { CreateUserService } from './application/usecases/create-user/create-user.service';
