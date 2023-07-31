@@ -12,4 +12,6 @@ EXPOSE 3000
 
 RUN chmod a+rx /usr/src/node_modules/bcrypt/lib/binding/napi-v3/bcrypt_lib.node
 
+RUN npm rebuild bcrypt --update-binary
+
 CMD ["npm", "run", "start:dev"]

@@ -25,3 +25,8 @@ services:
 #       - '3306:3306'
 #     volumes:
 #       - ./db:/docker-entrypoint-initdb.d
+
+# volume:
+#   db:
+
+#//TODO // TENGO QUE CONECTARLO A UNA BASE DE DATOS DE MYSQL
