@@ -1,4 +1,4 @@
-import { IUserRepositoryInterface } from '@auth/domain/ports/typeorm/user.repository';
+import { IUserRepositoryInterface } from '@src/auth/domain/ports/db/user.repository';
 import { UserDao } from '@auth/infrastructure/adapters/secondary/typeorm/dao/user.dao';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';

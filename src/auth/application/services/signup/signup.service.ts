@@ -2,7 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EncryptionFacadeService } from '../encryption-facade/encryption.facade.service';
 import { CreateUserService } from '@auth/application/usecases/create-user/create-user.service';
-import { IUserRepositoryInterface } from '@auth/domain/ports/typeorm/user.repository';
+import { IUserRepositoryInterface } from '@src/auth/domain/ports/db/user.repository';
 import { FindUsersService } from '../find-users/find-users.service';
 import { UserDao } from '@auth/infrastructure/adapters/secondary/typeorm/dao/user.dao';
 
