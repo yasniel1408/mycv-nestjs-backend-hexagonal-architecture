@@ -16,7 +16,6 @@ import { EncryptionFacadeService } from './application/services/encryption-facad
 import { JwtFacadeService } from './application/services/jwt-facade/jwt.facade.service';
 import { ConfigService } from '@nestjs/config';
 import { UserDao } from './infrastructure/adapters/secondary/db/dao/user.dao';
-import { FindByEmailService } from './application/services/find-by-email/find-by-email.service';
 import { CreateUserService } from './application/usecases/create-user/create-user.service';
 import { AuthRepository } from './infrastructure/adapters/secondary/db/user.repository';
 
@@ -42,7 +41,6 @@ import { AuthRepository } from './infrastructure/adapters/secondary/db/user.repo
   providers: [
     SignUpService,
     SignInService,
-    FindByEmailService,
     JwtService,
     JwtStrategy,
     ValidateUserService,
