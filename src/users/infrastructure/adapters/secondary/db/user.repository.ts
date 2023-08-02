@@ -1,5 +1,5 @@
 import { IUserRepositoryInterface } from '@src/users/domain/ports/secondary/db/user.repository.interface';
-import { FindManyOptions, FindOptionsWhere, RemoveOptions, Repository, SaveOptions } from 'typeorm';
+import { FindManyOptions, RemoveOptions, Repository, SaveOptions } from 'typeorm';
 import { UserDao } from './dao/user.dao';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
@@ -19,8 +19,8 @@ export class UserRepository implements IUserRepositoryInterface<UserDao> {
     return this.repository.find(options);
   }
 
-  findById(where: FindOptionsWhere<UserDao>): Promise<UserDao | null> {
-    return this.repository.findOneBy(where);
+  findById(id: number): Promise<UserDao | null> {
+    return this.repository.findOneBy({ id });
   }
 
   remove(entity: UserDao, options?: RemoveOptions): Promise<UserDao> {

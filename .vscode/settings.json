@@ -44,7 +44,7 @@
         },
         "local": {
             "host": "localhost:3000",
-            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoieWFzbmllbEBnbWFpbC5jb20iLCJpYXQiOjE2OTA1OTY4Njh9.yg2CCmH4BQbvdfxvMtyv2qE14t6wgskJOG-ulv6yYb8",
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoieWFzbmllbEBnbWFpbC5jb20iLCJpYXQiOjE2OTEwMTE4MTN9.MV3mnzp3nNrGgoaFsWrmFBSUpXdP42fCQq_NvSnQiRw",
         },
         "production": {
             "host": "example.com",

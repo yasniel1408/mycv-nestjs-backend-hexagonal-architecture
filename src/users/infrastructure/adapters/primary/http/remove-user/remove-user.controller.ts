@@ -12,6 +12,6 @@ export class RemoveUserController implements IRemoveUserController<string, UserR
   @HttpCode(HttpStatus.OK)
   @SerializeResponseDto(UserResponseDto)
   async remove(@Param('id') id: string): Promise<UserResponseDto> {
-    return await this.removeUserService.remove(parseInt(id));
+    return this.removeUserService.remove(parseInt(id));
   }
 }

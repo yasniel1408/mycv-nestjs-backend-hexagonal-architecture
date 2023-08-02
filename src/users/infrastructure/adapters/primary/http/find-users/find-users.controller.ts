@@ -1,4 +1,4 @@
-import { Controller, Get, HttpCode, HttpStatus, Query } from '@nestjs/common';
+import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
 import { UserResponseDto } from './dto/user.response.dto';
 import { IFindUsersController } from '@users/domain/ports/primary/api/find-users.controller.interface';
 import { SerializeResponseDto } from '@shared/infrastructure/decorators/serialize.decorator';
@@ -11,7 +11,7 @@ export class FindUsersController implements IFindUsersController<string, UserRes
   @Get('/')
   @HttpCode(HttpStatus.OK)
   @SerializeResponseDto(UserResponseDto)
-  async find(@Query('email') email?: string): Promise<UserResponseDto[]> {
-    return this.findUsersService.find(email);
+  async find(): Promise<UserResponseDto[]> {
+    return this.findUsersService.find();
   }
 }

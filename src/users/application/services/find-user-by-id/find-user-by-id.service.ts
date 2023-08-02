@@ -11,7 +11,7 @@ export class FindUserByIdService {
       return null;
     }
 
-    const user: UserDao = await this.userRepository.findById({ id });
+    const user: UserDao = await this.userRepository.findById(id);
 
     if (!user) {
       throw new NotFoundException('User not found!');

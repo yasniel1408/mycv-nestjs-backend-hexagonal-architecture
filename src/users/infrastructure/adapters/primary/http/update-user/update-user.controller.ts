@@ -13,6 +13,6 @@ export class UpdateUserController implements IUpdateUserController<UpdateRequest
   @HttpCode(HttpStatus.OK)
   @SerializeResponseDto(UserResponseDto)
   async update(@Param('id') id: string, @Body() body: UpdateRequestDto): Promise<UserResponseDto> {
-    return await this.updateUserService.update(parseInt(id), body);
+    return this.updateUserService.update(parseInt(id), body);
   }
 }

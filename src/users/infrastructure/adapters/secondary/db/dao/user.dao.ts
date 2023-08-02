@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('User')
@@ -7,6 +8,10 @@ export class UserDao {
 
   @Column()
   email: string;
+
+  @Column()
+  @Exclude()
+  password: string;
 
   @Column({
     unique: false,

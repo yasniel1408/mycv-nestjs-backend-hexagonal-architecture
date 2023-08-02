@@ -1,3 +1,4 @@
 
 GET http://{{host}}/api/{{version}}/users/1 HTTP/1.1
 Content-Type: {{contentType}}
+Authorization: Bearer {{token}}

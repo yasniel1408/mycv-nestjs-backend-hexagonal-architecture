@@ -1,8 +1,10 @@
 
-PATCH http://{{host}}/api/{{version}}/users/1 HTTP/1.1
+PATCH http://{{host}}/api/{{version}}/users/2 HTTP/1.1
 Content-Type: {{contentType}}
+Authorization: Bearer {{token}}
 
 {
-    "email": "yasniel@gmail.com",
-    "password": "yasniell"
+    "email": "yasniel22222@gmail.com",
+    "password": "yasniell",
+    "name": "Yasniel2"
 }

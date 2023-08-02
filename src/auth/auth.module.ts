@@ -16,9 +16,9 @@ import { EncryptionFacadeService } from './application/services/encryption-facad
 import { JwtFacadeService } from './application/services/jwt-facade/jwt.facade.service';
 import { ConfigService } from '@nestjs/config';
 import { UserDao } from './infrastructure/adapters/secondary/db/dao/user.dao';
-import { FindUsersService } from './application/services/find-users/find-users.service';
 import { FindByEmailService } from './application/services/find-by-email/find-by-email.service';
 import { CreateUserService } from './application/usecases/create-user/create-user.service';
+import { AuthRepository } from './infrastructure/adapters/secondary/db/user.repository';
 
 @Module({
   imports: [
@@ -41,7 +41,6 @@ import { CreateUserService } from './application/usecases/create-user/create-use
   ],
   providers: [
     SignUpService,
-    FindUsersService,
     SignInService,
     FindByEmailService,
     JwtService,
@@ -52,6 +51,7 @@ import { CreateUserService } from './application/usecases/create-user/create-use
     EncryptionFacadeService,
     JwtFacadeService,
     CreateUserService,
+    AuthRepository,
     // {
     //   provide: APP_INTERCEPTOR, // Interceptor para recuperar la información del usuario fresca de la base de datos
     //   useClass: CurrentUserInterceptor,

@@ -1,14 +1,14 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { EncryptionFacadeService } from '../encryption-facade/encryption.facade.service';
 import { UserDao } from '@src/auth/infrastructure/adapters/secondary/db/dao/user.dao';
-import { FindByEmailService } from '../find-by-email/find-by-email.service';
+import { AuthRepository } from '@src/auth/infrastructure/adapters/secondary/db/user.repository';
 
 @Injectable()
 export class ValidateUserService {
-  constructor(private findByEmailService: FindByEmailService, private encryptionFacadeService: EncryptionFacadeService) {}
+  constructor(private encryptionFacadeService: EncryptionFacadeService, private userRepository: AuthRepository) {}
 
   async validate(email: string, password: string): Promise<UserDao> {
-    const user = await this.findByEmailService.find(email);
+    const user: UserDao = await this.userRepository.findByEmail(email);
 
     if (!user) {
       throw new UnauthorizedException('Invalid email or password');
