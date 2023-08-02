@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UpdateUserController } from './update-user.controller';
 import { UpdateUserService } from '@users/application/services/update-user/update-user.service';
-import { UserDao } from '@users/infrastructure/adapters/secondary/typeorm/dao/user.dao';
+import { UserDao } from '@src/users/infrastructure/adapters/secondary/db/dao/user.dao';
 
 describe('UsersController', () => {
   let controller: UpdateUserController;

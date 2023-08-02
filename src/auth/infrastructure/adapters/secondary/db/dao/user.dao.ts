@@ -9,5 +9,5 @@ export class UserDao {
   email: string;
 
   @Column()
-  password?: string;
+  password: string;
 }

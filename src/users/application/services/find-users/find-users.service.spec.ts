@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 import { FindUsersService } from './find-users.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { UserDao } from '@users/infrastructure/adapters/secondary/typeorm/dao/user.dao';
+import { UserDao } from '@src/users/infrastructure/adapters/secondary/db/dao/user.dao';
 
 describe('FindUsersService', () => {
   let service: FindUsersService;

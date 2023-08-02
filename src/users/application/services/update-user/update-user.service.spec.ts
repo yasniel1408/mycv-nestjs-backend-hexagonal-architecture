@@ -1,6 +1,6 @@
 import { Test } from '@nestjs/testing';
 import { UpdateUserService } from './update-user.service';
-import { UserDao } from '@users/infrastructure/adapters/secondary/typeorm/dao/user.dao';
+import { UserDao } from '@src/users/infrastructure/adapters/secondary/db/dao/user.dao';
 import { getRepositoryToken } from '@nestjs/typeorm';
 
 describe('UpdateUserService', () => {

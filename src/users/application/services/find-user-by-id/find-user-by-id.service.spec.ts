@@ -1,10 +1,10 @@
 import { Test } from '@nestjs/testing';
-import { FindByEmailService } from './find-by-email.service';
+import { FindUserByIdService } from './find-user-by-id.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { UserDao } from '@users/infrastructure/adapters/secondary/typeorm/dao/user.dao';
+import { UserDao } from '@src/users/infrastructure/adapters/secondary/db/dao/user.dao';
 
-describe('FindByEmailService', () => {
-  let service: FindByEmailService;
+describe('FindUserByIdService', () => {
+  let service: FindUserByIdService;
   const mockRepository = {
     findOneBy: jest.fn().mockImplementation((dao: UserDao) => {
       return Promise.resolve({
@@ -19,7 +19,7 @@ describe('FindByEmailService', () => {
       imports: [], // Add
       controllers: [], // Add
       providers: [
-        FindByEmailService,
+        FindUserByIdService,
         {
           provide: getRepositoryToken(UserDao),
           useValue: mockRepository,
@@ -27,7 +27,7 @@ describe('FindByEmailService', () => {
       ], // Add
     }).compile();
 
-    service = moduleRef.get<FindByEmailService>(FindByEmailService);
+    service = moduleRef.get<FindUserByIdService>(FindUserByIdService);
   });
 
   it('should be defined', () => {

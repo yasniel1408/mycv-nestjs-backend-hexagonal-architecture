@@ -18,6 +18,20 @@
             "driver": "SQLite",
             "name": "db",
             "database": "${workspaceFolder:messages-nestjs-backend}/db.sqlite"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "container-mysql",
+            "database": "db",
+            "username": "user",
+            "password": "password"
         }
     ],
     "sqltools.useNodeRuntime": true,

@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { RemoveUserController } from './remove-user.controller';
 import { RemoveUserService } from '@users/application/services/remove-user/remove-user.service';
-import { UserDao } from '@users/infrastructure/adapters/secondary/typeorm/dao/user.dao';
+import { UserDao } from '@src/users/infrastructure/adapters/secondary/db/dao/user.dao';
 
 describe('RemoveUserController', () => {
   let controller: RemoveUserController;

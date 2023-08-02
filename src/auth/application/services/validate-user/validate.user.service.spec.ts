@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 import { ValidateUserService } from './validate-user.service';
 import { FindByEmailService } from '../find-by-email/find-by-email.service';
-import { UserDao } from '@auth/infrastructure/adapters/secondary/typeorm/dao/user.dao';
+import { UserDao } from '@src/auth/infrastructure/adapters/secondary/db/dao/user.dao';
 import { EncryptionFacadeService } from '../encryption-facade/encryption.facade.service';
 
 describe('ValidateUserService', () => {

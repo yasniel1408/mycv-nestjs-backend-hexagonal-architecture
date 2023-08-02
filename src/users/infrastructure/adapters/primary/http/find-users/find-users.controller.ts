@@ -12,6 +12,6 @@ export class FindUsersController implements IFindUsersController<string, UserRes
   @HttpCode(HttpStatus.OK)
   @SerializeResponseDto(UserResponseDto)
   async find(@Query('email') email?: string): Promise<UserResponseDto[]> {
-    return await this.findUsersService.find(email);
+    return this.findUsersService.find(email);
   }
 }

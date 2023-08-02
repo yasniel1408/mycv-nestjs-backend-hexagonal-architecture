@@ -1,6 +1,6 @@
 import { Test } from '@nestjs/testing';
 import { FindByEmailService } from './find-by-email.service';
-import { UserDao } from '@auth/infrastructure/adapters/secondary/typeorm/dao/user.dao';
+import { UserDao } from '@src/auth/infrastructure/adapters/secondary/db/dao/user.dao';
 import { getRepositoryToken } from '@nestjs/typeorm';
 
 describe('FindByEmailService', () => {

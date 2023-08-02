@@ -1,8 +1,5 @@
-export interface IUserRepositoryInterface<D> {
+export interface IAuthRepositoryInterface<D> {
   create(data: D): D;
   save(entity: any, options?: any): Promise<D>;
-  find(options?: Partial<D>): Promise<D[]>;
-  findBy(options?: Partial<D>): Promise<D[]>;
-  findOne(id: any): Promise<D | null>;
-  findOneBy(where: any): Promise<D | null>;
+  findByEmail(email: string): Promise<D | null>;
 }
