@@ -10,4 +10,13 @@ export class UserResponseDto extends ResponseBaseDto {
 
   @Expose()
   name?: string;
+
+  @Expose()
+  createdAt: Date;
+
+  @Expose()
+  updatedAt?: Date;
+
+  @Expose()
+  reports?: { id: number; make: string; model: string; year: number }[];
 }

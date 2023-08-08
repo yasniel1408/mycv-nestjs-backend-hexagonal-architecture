@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('User')
 export class UserDao {
@@ -10,4 +10,7 @@ export class UserDao {
 
   @Column()
   password: string;
+
+  @CreateDateColumn()
+  createdAt: Date;
 }

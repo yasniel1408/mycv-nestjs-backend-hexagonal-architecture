@@ -1,0 +1,14 @@
+
+POST http://{{host}}/api/{{version}}/reports HTTP/1.1
+Content-Type: {{contentType}}
+Authorization: Bearer {{token}}
+
+{
+  "make": "Toyota",
+  "model": "corolla",
+  "year": 2020,
+  "mileage": 20000,
+  "lng": 12,
+  "lat": 12,
+  "price": 56000
+}

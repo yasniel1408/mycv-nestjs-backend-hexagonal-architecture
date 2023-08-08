@@ -1,5 +1,6 @@
+import { ReportDao } from '@src/reports/infrastructure/adapters/secondary/db/dao/report.dao';
 import { Exclude } from 'class-transformer';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity('User')
 export class UserDao {
@@ -18,6 +19,15 @@ export class UserDao {
     nullable: true,
   })
   name?: string;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt?: Date;
+
+  @OneToMany(() => ReportDao, (report) => report.user)
+  reports?: ReportDao[];
 
   // @AfterInsert()
   // logInstert() {

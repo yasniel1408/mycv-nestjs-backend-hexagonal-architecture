@@ -1,23 +1,23 @@
 import { Module } from '@nestjs/common';
 import { SingUpController } from './infrastructure/adapters/primary/http/signup/signup.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { SignUpService } from '@auth/application/services/signup/signup.service';
 import { SignInController } from './infrastructure/adapters/primary/http/singin/signin.controller';
-import { SignInService } from './application/services/signin/signin.service';
 import { WhoAmIController } from './infrastructure/adapters/primary/http/whoami/whoami.controller';
 import { SignOutController } from './infrastructure/adapters/primary/http/signout/signout.controller';
 import { JwtModule, JwtService } from '@nestjs/jwt';
 import { JwtStrategy } from './infrastructure/auth-strategies/jwt.strategy';
-import { ValidateUserService } from './application/services/validate-user/validate-user.service';
 import { LocalStrategy } from './infrastructure/auth-strategies/local-strategy';
 import { RefreshJwtStrategy } from './infrastructure/auth-strategies/refreshToken.strategy';
 import { PassportModule } from '@nestjs/passport';
-import { EncryptionFacadeService } from './application/services/encryption-facade/encryption.facade.service';
-import { JwtFacadeService } from './application/services/jwt-facade/jwt.facade.service';
 import { ConfigService } from '@nestjs/config';
 import { UserDao } from './infrastructure/adapters/secondary/db/dao/user.dao';
-import { CreateUserService } from './application/usecases/create-user/create-user.service';
+import { CreateUserService } from './application/create-user/create-user.service';
 import { AuthRepository } from './infrastructure/adapters/secondary/db/user.repository';
+import { SignUpService } from './application/signup/signup.service';
+import { SignInService } from './application/signin/signin.service';
+import { ValidateUserService } from './application/validate-user/validate-user.service';
+import { EncryptionFacadeService } from './application/encryption-facade/encryption.facade.service';
+import { JwtFacadeService } from './application/jwt-facade/jwt.facade.service';
 
 @Module({
   imports: [

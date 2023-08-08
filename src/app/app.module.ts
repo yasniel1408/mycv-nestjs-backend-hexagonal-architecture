@@ -42,6 +42,7 @@ dotenv.config();
     UsersModule,
     ReportsModule,
     AuthModule,
+    ReportsModule,
   ],
   controllers: [AppController],
   providers: [

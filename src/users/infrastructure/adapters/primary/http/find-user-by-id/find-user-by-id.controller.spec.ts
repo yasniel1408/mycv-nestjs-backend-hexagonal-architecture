@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { FindUserByIdService } from '@src/users/application/services/find-user-by-id/find-user-by-id.service';
+import { FindUserByIdService } from '@src/users/application/find-user-by-id/find-user-by-id.service';
 import { UserDao } from '@src/users/infrastructure/adapters/secondary/db/dao/user.dao';
 import { FindUserByIdController } from './find-user-by-id.controller';
 

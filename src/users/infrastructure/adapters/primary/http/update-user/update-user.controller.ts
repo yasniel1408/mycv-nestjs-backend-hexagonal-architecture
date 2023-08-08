@@ -2,8 +2,8 @@ import { Body, Controller, HttpCode, HttpStatus, Param, Patch } from '@nestjs/co
 import { UpdateRequestDto } from './dto/user.request.dto';
 import { UserResponseDto } from './dto/user.response.dto';
 import { IUpdateUserController } from '@users/domain/ports/primary/api/update.controller.interface';
-import { UpdateUserService } from '@users/application/services/update-user/update-user.service';
 import { SerializeResponseDto } from '@shared/infrastructure/decorators/serialize.decorator';
+import { UpdateUserService } from '@users/application/update-user/update-user.service';
 
 @Controller('users')
 export class UpdateUserController implements IUpdateUserController<UpdateRequestDto, UserResponseDto> {

@@ -1,0 +1,4 @@
+
+PATCH http://{{host}}/api/{{version}}/reports/1 HTTP/1.1
+Content-Type: {{contentType}}
+Authorization: Bearer {{token}}

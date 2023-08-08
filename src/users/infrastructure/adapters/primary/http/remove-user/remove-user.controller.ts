@@ -2,7 +2,7 @@ import { Controller, Delete, HttpCode, HttpStatus, Param } from '@nestjs/common'
 import { UserResponseDto } from './dto/user.response.dto';
 import { IRemoveUserController } from '@users/domain/ports/primary/api/remove-user.controller.interface';
 import { SerializeResponseDto } from '@shared/infrastructure/decorators/serialize.decorator';
-import { RemoveUserService } from '@users/application/services/remove-user/remove-user.service';
+import { RemoveUserService } from '@users/application/remove-user/remove-user.service';
 
 @Controller('users')
 export class RemoveUserController implements IRemoveUserController<string, UserResponseDto> {

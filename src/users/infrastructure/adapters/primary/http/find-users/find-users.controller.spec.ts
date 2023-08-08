@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { FindUsersController } from './find-users.controller';
-import { FindUsersService } from '@users/application/services/find-users/find-users.service';
-import { UserDao } from '@src/users/infrastructure/adapters/secondary/db/dao/user.dao';
+import { UserDao } from '@users/infrastructure/adapters/secondary/db/dao/user.dao';
+import { FindUsersService } from '@users/application/find-users/find-users.service';
 
 describe('FindUsersController', () => {
   let controller: FindUsersController;
