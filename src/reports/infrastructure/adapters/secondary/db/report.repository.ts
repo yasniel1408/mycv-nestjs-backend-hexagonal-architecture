@@ -2,7 +2,7 @@ import { FindManyOptions, RemoveOptions, Repository, SaveOptions } from 'typeorm
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 import { ReportDao } from './dao/report.dao';
-import { IReportRepositoryInterface } from '@src/reports/domain/ports/secondary/db/user.repository.interface';
+import { IReportRepositoryInterface } from '@reports/domain/ports/secondary/db/user.repository.interface';
 
 @Injectable()
 export class ReportRepository implements IReportRepositoryInterface<ReportDao> {

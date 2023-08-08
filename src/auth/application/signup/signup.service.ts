@@ -1,8 +1,8 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { EncryptionFacadeService } from '../encryption-facade/encryption.facade.service';
-import { CreateUserService } from '@src/auth/application/create-user/create-user.service';
-import { UserDao } from '@src/auth/infrastructure/adapters/secondary/db/dao/user.dao';
-import { AuthRepository } from '@src/auth/infrastructure/adapters/secondary/db/user.repository';
+import { CreateUserService } from '@auth/application/create-user/create-user.service';
+import { UserDao } from '@auth/infrastructure/adapters/secondary/db/dao/user.dao';
+import { AuthRepository } from '@auth/infrastructure/adapters/secondary/db/user.repository';
 
 @Injectable()
 export class SignUpService {

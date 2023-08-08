@@ -1,12 +1,19 @@
 import { Test } from '@nestjs/testing';
 import { RemoveUserService } from './remove-user.service';
-import { UserDao } from '@src/users/infrastructure/adapters/secondary/db/dao/user.dao';
+import { UserDao } from '@users/infrastructure/adapters/secondary/db/dao/user.dao';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { UserRepository } from '@users/infrastructure/adapters/secondary/db/user.repository';
 
 describe('RemoveUserService', () => {
   let service: RemoveUserService;
   const mockRepository = {
-    findOneBy: jest.fn().mockImplementation((dao: UserDao) => {
+    findById: jest.fn().mockImplementation((dao: UserDao) => {
+      return Promise.resolve({
+        id: Math.ceil(Math.random() * 10),
+        ...dao,
+      });
+    }),
+    remove: jest.fn().mockImplementation((dao: UserDao) => {
       return Promise.resolve({
         id: Math.ceil(Math.random() * 10),
         ...dao,
@@ -20,6 +27,7 @@ describe('RemoveUserService', () => {
       controllers: [], // Add
       providers: [
         RemoveUserService,
+        UserRepository,
         {
           provide: getRepositoryToken(UserDao),
           useValue: mockRepository,

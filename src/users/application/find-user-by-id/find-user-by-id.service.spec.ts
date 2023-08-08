@@ -1,12 +1,13 @@
 import { Test } from '@nestjs/testing';
 import { FindUserByIdService } from './find-user-by-id.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { UserDao } from '@src/users/infrastructure/adapters/secondary/db/dao/user.dao';
+import { UserDao } from '@users/infrastructure/adapters/secondary/db/dao/user.dao';
+import { UserRepository } from '@users/infrastructure/adapters/secondary/db/user.repository';
 
 describe('FindUserByIdService', () => {
   let service: FindUserByIdService;
   const mockRepository = {
-    findOneBy: jest.fn().mockImplementation((dao: UserDao) => {
+    findById: jest.fn().mockImplementation((dao: UserDao) => {
       return Promise.resolve({
         id: Math.ceil(Math.random() * 10),
         ...dao,
@@ -20,9 +21,10 @@ describe('FindUserByIdService', () => {
       controllers: [], // Add
       providers: [
         FindUserByIdService,
+        UserRepository,
         {
           provide: getRepositoryToken(UserDao),
-          useValue: mockRepository,
+          useValue: mockRepository.findById(),
         },
       ], // Add
     }).compile();

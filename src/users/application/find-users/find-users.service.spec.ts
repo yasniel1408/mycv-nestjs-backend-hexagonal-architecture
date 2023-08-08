@@ -1,16 +1,23 @@
 import { Test } from '@nestjs/testing';
-import { FindUsersService } from './find-users.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { UserDao } from '@src/users/infrastructure/adapters/secondary/db/dao/user.dao';
+import { UserDao } from '@users/infrastructure/adapters/secondary/db/dao/user.dao';
+import { FindUsersService } from './find-users.service';
+import { UserRepository } from '@users/infrastructure/adapters/secondary/db/user.repository';
 
 describe('FindUsersService', () => {
   let service: FindUsersService;
   const mockRepository = {
-    findBy: jest.fn().mockImplementation((dao: UserDao) => {
-      return Promise.resolve({
-        id: Math.ceil(Math.random() * 10),
-        ...dao,
-      });
+    find: jest.fn().mockImplementation((dao: UserDao) => {
+      return Promise.resolve([
+        {
+          id: Math.ceil(Math.random() * 10),
+          ...dao,
+        },
+        {
+          id: Math.ceil(Math.random() * 10),
+          ...dao,
+        },
+      ]);
     }),
   };
 
@@ -20,6 +27,7 @@ describe('FindUsersService', () => {
       controllers: [], // Add
       providers: [
         FindUsersService,
+        UserRepository,
         {
           provide: getRepositoryToken(UserDao),
           useValue: mockRepository,

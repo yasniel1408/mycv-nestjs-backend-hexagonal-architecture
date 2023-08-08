@@ -1,4 +1,4 @@
-import { IUserRepositoryInterface } from '@src/users/domain/ports/secondary/db/user.repository.interface';
+import { IUserRepositoryInterface } from '@users/domain/ports/secondary/db/user.repository.interface';
 import { FindManyOptions, RemoveOptions, Repository, SaveOptions } from 'typeorm';
 import { UserDao } from './dao/user.dao';
 import { InjectRepository } from '@nestjs/typeorm';

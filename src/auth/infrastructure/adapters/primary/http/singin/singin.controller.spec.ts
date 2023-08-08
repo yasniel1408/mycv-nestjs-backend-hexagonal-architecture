@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { SignInController } from './signin.controller';
-import { SignInService } from '@auth/application/services/signin/signin.service';
+import { SignInService } from '@auth/application/signin/signin.service';
 
 describe('SignInController', () => {
   let controller: SignInController;

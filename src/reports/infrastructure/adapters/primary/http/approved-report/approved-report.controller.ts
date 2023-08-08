@@ -9,7 +9,6 @@ export class ApprovedReportController implements IApprovedReportController<strin
   @Patch('/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
   async approvedReport(@Param('id') id: string): Promise<void> {
-    console.log(id);
     this.approvedReportService.approved(parseInt(id));
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { UserDao } from '@src/users/infrastructure/adapters/secondary/db/dao/user.dao';
-import { UserRepository } from '@src/users/infrastructure/adapters/secondary/db/user.repository';
+import { UserDao } from '@users/infrastructure/adapters/secondary/db/dao/user.dao';
+import { UserRepository } from '@users/infrastructure/adapters/secondary/db/user.repository';
 
 @Injectable()
 export class FindUserByIdService {

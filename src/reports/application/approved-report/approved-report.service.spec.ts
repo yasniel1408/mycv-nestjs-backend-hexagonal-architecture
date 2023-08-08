@@ -1,7 +1,8 @@
 import { Test } from '@nestjs/testing';
 import { ApprovedReportService } from './approved-report.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { ReportDao } from '@src/reports/infrastructure/adapters/secondary/db/dao/report.dao';
+import { ReportDao } from '@reports/infrastructure/adapters/secondary/db/dao/report.dao';
+import { ReportRepository } from '@reports/infrastructure/adapters/secondary/db/report.repository';
 
 describe('ApprovedReportService', () => {
   let service: ApprovedReportService;
@@ -20,6 +21,7 @@ describe('ApprovedReportService', () => {
       controllers: [], // Add
       providers: [
         ApprovedReportService,
+        ReportRepository,
         {
           provide: getRepositoryToken(ReportDao),
           useValue: mockRepository,

@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { FindUserByIdService } from '@src/users/application/find-user-by-id/find-user-by-id.service';
-import { UserDao } from '@src/users/infrastructure/adapters/secondary/db/dao/user.dao';
+import { FindUserByIdService } from '@users/application/find-user-by-id/find-user-by-id.service';
+import { UserDao } from '@users/infrastructure/adapters/secondary/db/dao/user.dao';
 import { FindUserByIdController } from './find-user-by-id.controller';
 
 describe('UsersController', () => {
@@ -9,7 +9,7 @@ describe('UsersController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [FindUserByIdController],
-      providers: [{ provide: FindUserByIdService, useValue: { findOne: async () => ({ id: 1, email: 'test@gmail.com', name: 'Test' } as UserDao) } }],
+      providers: [{ provide: FindUserByIdService, useValue: { find: async () => ({ id: 1, email: 'test@gmail.com', name: 'Test' } as UserDao) } }],
     }).compile();
 
     controller = module.get<FindUserByIdController>(FindUserByIdController);

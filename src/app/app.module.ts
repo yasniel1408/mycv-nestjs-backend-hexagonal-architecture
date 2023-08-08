@@ -10,7 +10,7 @@ import * as dotenv from 'dotenv';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from '@auth/infrastructure/guards/jwt-auth.guard';
 import { join } from 'path';
-import { isProd } from '@src/config/constants';
+import { isProd } from '@config/constants';
 dotenv.config();
 
 @Module({

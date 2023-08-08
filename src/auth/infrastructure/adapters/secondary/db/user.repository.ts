@@ -2,7 +2,7 @@ import { Repository, SaveOptions } from 'typeorm';
 import { UserDao } from './dao/user.dao';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
-import { IAuthRepositoryInterface } from '@src/auth/domain/ports/db/user.repository';
+import { IAuthRepositoryInterface } from '@auth/domain/ports/db/user.repository';
 
 @Injectable()
 export class AuthRepository implements IAuthRepositoryInterface<UserDao> {

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserDao } from '@src/users/infrastructure/adapters/secondary/db/dao/user.dao';
+import { UserDao } from '@users/infrastructure/adapters/secondary/db/dao/user.dao';
 import { FindUserByIdController } from './infrastructure/adapters/primary/http/find-user-by-id/find-user-by-id.controller';
 import { FindUsersController } from './infrastructure/adapters/primary/http/find-users/find-users.controller';
 import { RemoveUserController } from './infrastructure/adapters/primary/http/remove-user/remove-user.controller';

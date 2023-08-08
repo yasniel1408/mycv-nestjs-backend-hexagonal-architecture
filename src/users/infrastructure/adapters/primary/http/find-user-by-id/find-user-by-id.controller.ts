@@ -1,8 +1,8 @@
 import { Controller, Get, HttpCode, HttpStatus, Param } from '@nestjs/common';
 import { UserResponseDto } from './dto/user.response.dto';
-import { IFindUserByIdController } from '@src/users/domain/ports/primary/api/find-user-by-id.controller.interface';
+import { IFindUserByIdController } from '@users/domain/ports/primary/api/find-user-by-id.controller.interface';
 import { SerializeResponseDto } from '@shared/infrastructure/decorators/serialize.decorator';
-import { FindUserByIdService } from '@src/users/application/find-user-by-id/find-user-by-id.service';
+import { FindUserByIdService } from '@users/application/find-user-by-id/find-user-by-id.service';
 
 @Controller('users')
 export class FindUserByIdController implements IFindUserByIdController<string, UserResponseDto> {

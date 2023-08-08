@@ -7,8 +7,6 @@ export class ApprovedReportService {
   constructor(private reportRepository: ReportRepository) {}
 
   async approved(id: number): Promise<ReportDao> {
-    console.log(id);
-
     const report = await this.reportRepository.findById(id);
 
     if (!report) {
