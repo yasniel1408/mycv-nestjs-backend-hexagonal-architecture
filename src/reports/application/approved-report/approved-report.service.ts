@@ -6,14 +6,14 @@ import { ReportRepository } from '@reports/infrastructure/adapters/secondary/db/
 export class ApprovedReportService {
   constructor(private reportRepository: ReportRepository) {}
 
-  async approved(id: number): Promise<ReportDao> {
+  async changeApproved(id: number, isApproved: boolean): Promise<ReportDao> {
     const report = await this.reportRepository.findById(id);
 
     if (!report) {
       throw new NotFoundException('Report not found!');
     }
 
-    report.approved = true;
+    report.approved = isApproved;
 
     return await this.reportRepository.save(report);
   }

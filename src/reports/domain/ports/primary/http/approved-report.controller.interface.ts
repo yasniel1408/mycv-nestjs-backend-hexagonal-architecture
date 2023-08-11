@@ -1,3 +1,3 @@
 export interface IApprovedReportController<Q, R> {
-  approvedReport(params: Q): Promise<R>;
+  approvedReport(params: string, body: Q): Promise<R>;
 }
