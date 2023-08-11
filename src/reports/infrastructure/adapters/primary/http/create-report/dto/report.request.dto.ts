@@ -5,7 +5,7 @@ export class CreateReportRequestDto {
   make: string;
 
   @IsString()
-  model: string;
+  model?: string;
 
   @IsNumber()
   @Min(1930)
@@ -15,13 +15,13 @@ export class CreateReportRequestDto {
   @IsNumber()
   @Min(0)
   @Max(1000000)
-  mileage: number;
+  mileage?: number;
 
   @IsLongitude()
-  lng: number;
+  lng?: number;
 
   @IsLatitude()
-  lat: number;
+  lat?: number;
 
   @IsNumber()
   @Min(0)

@@ -1,5 +1,6 @@
 import { ResponseBaseDto } from '@shared/infrastructure/response-base.dto.abstract';
-import { Expose } from 'class-transformer';
+import { Expose, Type } from 'class-transformer';
+import { Product } from './product.response.dto';
 
 export class UserResponseDto extends ResponseBaseDto {
   @Expose()
@@ -18,5 +19,6 @@ export class UserResponseDto extends ResponseBaseDto {
   updatedAt?: Date;
 
   @Expose()
-  reports?: { id: number; make: string; model: string; year: number }[];
+  @Type(() => Product)
+  reports?: Product[];
 }

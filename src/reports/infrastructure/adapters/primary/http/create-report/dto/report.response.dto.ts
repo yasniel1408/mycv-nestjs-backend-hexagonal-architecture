@@ -8,7 +8,7 @@ export class CreatedReportRequestDto {
   make: string;
 
   @Expose()
-  model: string;
+  model?: string;
 
   @Expose()
   approved: boolean;

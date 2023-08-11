@@ -4,11 +4,11 @@ Content-Type: {{contentType}}
 Authorization: Bearer {{token}}
 
 {
-  "make": "Toyota",
-  "model": "corolla",
-  "year": 2020,
-  "mileage": 20000,
+  "make": "Ferrary",
+  "model": "WUIG78",
+  "year": 2023,
+  "mileage": 200,
   "lng": 12,
   "lat": 12,
-  "price": 56000
+  "price": 54654
 }

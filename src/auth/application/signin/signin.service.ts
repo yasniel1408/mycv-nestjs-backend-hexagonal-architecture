@@ -9,7 +9,7 @@ export class SignInService {
   async signin(email: string, password: string): Promise<string> {
     const user = await this.validateUserService.validate(email, password);
 
-    const payload = { sub: user.id, email: user.email };
+    const payload = { sub: user.id, email: user.email, isAdmin: user.isAdmin };
 
     const token = this.jwtFacadeService.createJwt(payload);
 

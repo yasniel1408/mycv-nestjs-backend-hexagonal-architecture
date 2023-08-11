@@ -1,5 +1,5 @@
-import { UserDao } from '@users/infrastructure/adapters/secondary/db/dao/user.dao';
 import { PrimaryGeneratedColumn, Column, Entity, ManyToOne } from 'typeorm';
+import { UserDao } from './user.dao';
 
 @Entity('Report')
 export class ReportDao {
@@ -12,20 +12,28 @@ export class ReportDao {
   @Column()
   make: string;
 
-  @Column()
-  model: string;
+  @Column({
+    nullable: true,
+  })
+  model?: string;
 
   @Column()
   year: number;
 
-  @Column()
-  lng: number;
+  @Column({
+    nullable: true,
+  })
+  lng?: number;
 
-  @Column()
-  lat: number;
+  @Column({
+    nullable: true,
+  })
+  lat?: number;
 
-  @Column()
-  mileage: number;
+  @Column({
+    nullable: true,
+  })
+  mileage?: number;
 
   @Column({ default: false })
   approved: boolean;

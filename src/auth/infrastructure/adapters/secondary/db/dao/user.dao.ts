@@ -11,6 +11,9 @@ export class UserDao {
   @Column()
   password: string;
 
+  @Column({ default: false })
+  isAdmin: boolean;
+
   @CreateDateColumn()
   createdAt: Date;
 }

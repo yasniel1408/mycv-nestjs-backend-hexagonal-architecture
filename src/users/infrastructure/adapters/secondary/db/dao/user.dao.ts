@@ -1,6 +1,7 @@
-import { ReportDao } from '@reports/infrastructure/adapters/secondary/db/dao/report.dao';
-import { Exclude } from 'class-transformer';
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Exclude, Transform, Type } from 'class-transformer';
+import { Column, CreateDateColumn, Entity, JoinTable, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { ReportDao } from './report.dao';
+import moment from 'moment';
 
 @Entity('User')
 export class UserDao {
@@ -20,13 +21,17 @@ export class UserDao {
   })
   name?: string;
 
+  @Column()
+  isAdmin: boolean;
+
   @CreateDateColumn()
   createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt?: Date;
 
-  @OneToMany(() => ReportDao, (report) => report.user)
+  @OneToMany((type) => ReportDao, (report) => report.user)
+  @Type()
   reports?: ReportDao[];
 
   // @AfterInsert()
