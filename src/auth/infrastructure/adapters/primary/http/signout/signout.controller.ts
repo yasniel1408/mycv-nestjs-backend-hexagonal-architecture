@@ -6,7 +6,7 @@ export class SignOutController implements ISignOutController {
   @Post('/signout')
   @HttpCode(HttpStatus.OK)
   async whoami(@Request() request): Promise<any> {
-    request.user = null;
+    request.user = null; // TODO: Implementar lógica de signout, borrar el refresh token de la base de datos
     return { ok: true };
   }
 }

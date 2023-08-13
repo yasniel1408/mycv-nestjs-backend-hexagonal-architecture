@@ -9,7 +9,12 @@ describe('UsersController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [FindUserByIdController],
-      providers: [{ provide: FindUserByIdService, useValue: { find: async () => ({ id: 1, email: 'test@gmail.com', name: 'Test' } as UserDao) } }],
+      providers: [
+        {
+          provide: FindUserByIdService,
+          useValue: { find: async () => ({ id: 1, email: 'test@gmail.com', name: 'Test' } as UserDao) },
+        },
+      ],
     }).compile();
 
     controller = module.get<FindUserByIdController>(FindUserByIdController);

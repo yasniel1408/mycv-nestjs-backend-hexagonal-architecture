@@ -4,5 +4,5 @@ Content-Type: {{contentType}}
 Authorization: Bearer {{token}}
 
 {
-    "isApproved": false
+    "isApproved": true
 }

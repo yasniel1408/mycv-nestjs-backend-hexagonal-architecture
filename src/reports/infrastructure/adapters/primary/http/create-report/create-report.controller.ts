@@ -4,10 +4,12 @@ import { ICreateReportController } from '@reports/domain/ports/primary/http/crea
 import { CreateReportRequestDto } from './dto/report.request.dto';
 import { CreatedReportRequestDto } from './dto/report.response.dto';
 import { CreateReportService } from '@reports/application/create-report/create-report.service';
-import { CurrentUser } from '@shared/infrastructure/decorators/current.user.decorator';
+import { CurrentUser } from '@shared/infrastructure/decorators/current-user.decorator';
 
 @Controller('reports')
-export class CreateReportController implements ICreateReportController<CreateReportRequestDto, CreatedReportRequestDto> {
+export class CreateReportController
+  implements ICreateReportController<CreateReportRequestDto, CreatedReportRequestDto>
+{
   constructor(private createReportService: CreateReportService) {}
 
   @Post('/')

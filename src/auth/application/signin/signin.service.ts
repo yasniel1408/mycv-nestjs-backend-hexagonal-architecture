@@ -1,18 +1,25 @@
 import { Injectable } from '@nestjs/common';
 import { ValidateUserService } from '../validate-user/validate-user.service';
 import { JwtFacadeService } from '../jwt-facade/jwt.facade.service';
+import { AuthRepository } from '@auth/infrastructure/adapters/secondary/db/user.repository';
 
 @Injectable()
 export class SignInService {
-  constructor(private validateUserService: ValidateUserService, private jwtFacadeService: JwtFacadeService) {}
+  constructor(
+    private validateUserService: ValidateUserService,
+    private jwtFacadeService: JwtFacadeService,
+    private userRepository: AuthRepository,
+  ) {}
 
-  async signin(email: string, password: string): Promise<string> {
+  async signin(email: string, password: string): Promise<{ token: string; refreshToken: string }> {
     const user = await this.validateUserService.validate(email, password);
 
-    const payload = { sub: user.id, email: user.email, isAdmin: user.isAdmin };
+    const { token, refreshToken } = await this.jwtFacadeService.createJwtAndRefreshToken(user);
 
-    const token = this.jwtFacadeService.createJwt(payload);
+    Object.assign(user, { refreshToken }); // le asignamos lo que esta en attrs a lo que esta en user
 
-    return token;
+    await this.userRepository.save(user);
+
+    return { token, refreshToken };
   }
 }

@@ -14,6 +14,9 @@ export class UserDao {
   @Column({ default: false })
   isAdmin: boolean;
 
+  @Column({ nullable: true })
+  refreshToken?: string;
+
   @CreateDateColumn()
   createdAt: Date;
 }

@@ -4,4 +4,7 @@ import { Expose } from 'class-transformer';
 export class SignInResponseDto extends ResponseBaseDto {
   @Expose()
   token: string;
+
+  @Expose()
+  refreshToken: string;
 }

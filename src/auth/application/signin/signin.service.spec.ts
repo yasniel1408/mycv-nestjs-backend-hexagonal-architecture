@@ -17,6 +17,12 @@ describe('SignInService', () => {
         ...dao,
       });
     }),
+    save: jest.fn().mockImplementation((dao: UserDao) => {
+      return Promise.resolve({
+        id: Math.ceil(Math.random() * 10),
+        ...dao,
+      });
+    }),
   };
 
   beforeEach(async () => {
@@ -25,16 +31,16 @@ describe('SignInService', () => {
       controllers: [], // Add
       providers: [
         SignInService,
-        AuthRepository,
+        { provide: AuthRepository, useValue: mockRepository },
         {
           provide: EncryptionFacadeService,
           useValue: { compare: async () => true },
         },
-        ValidateUserService,
+        { provide: ValidateUserService, useValue: { validate: async () => ({ id: 1 }) } },
         { provide: getRepositoryToken(UserDao), useValue: mockRepository },
         {
           provide: JwtFacadeService,
-          useValue: { createJwt: async () => 'token' },
+          useValue: { createJwtAndRefreshToken: async () => ({ token: 'token', refreshToken: 'refreshToken' }) },
         },
       ], // Add
     }).compile();
@@ -48,6 +54,6 @@ describe('SignInService', () => {
 
   it('should return token', async () => {
     const result = await service.signin('test@gmail.com', 'test');
-    expect(result).toBe('token');
+    expect(result).toStrictEqual({ token: 'token', refreshToken: 'refreshToken' });
   });
 });

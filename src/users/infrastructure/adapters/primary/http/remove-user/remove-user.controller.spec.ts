@@ -9,7 +9,12 @@ describe('RemoveUserController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [RemoveUserController],
-      providers: [{ provide: RemoveUserService, useValue: { remove: async () => ({ id: 1, email: 'test@gmail.com', name: 'Test' } as UserDao) } }],
+      providers: [
+        {
+          provide: RemoveUserService,
+          useValue: { remove: async () => ({ id: 1, email: 'test@gmail.com', name: 'Test' } as UserDao) },
+        },
+      ],
     }).compile();
 
     controller = module.get<RemoveUserController>(RemoveUserController);

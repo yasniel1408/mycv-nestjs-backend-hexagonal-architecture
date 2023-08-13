@@ -6,7 +6,7 @@ import { PasswordValueObject } from '@shared/domain/value-objects/password.value
 @Injectable()
 export class CreateUserService {
   create(email: string, password: string) {
-    const user: User = new User(new EmailValueObject(email), new PasswordValueObject(password), false);
+    const user: User = new User(new EmailValueObject(email), new PasswordValueObject(password));
 
     return user.toJSON();
   }

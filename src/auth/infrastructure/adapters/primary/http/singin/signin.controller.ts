@@ -16,7 +16,7 @@ export class SignInController implements IUsersSignInController<SignInRequestDto
   @HttpCode(HttpStatus.OK)
   @SerializeResponseDto(SignInResponseDto)
   async signin(@Body() body: SignInRequestDto): Promise<SignInResponseDto> {
-    const token = await this.signInService.signin(body.email, body.password);
-    return { token };
+    const { token, refreshToken } = await this.signInService.signin(body.email, body.password);
+    return { token, refreshToken };
   }
 }

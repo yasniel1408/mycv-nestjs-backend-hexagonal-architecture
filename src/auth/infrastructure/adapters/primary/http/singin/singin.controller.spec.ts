@@ -8,7 +8,12 @@ describe('SignInController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [SignInController],
-      providers: [{ provide: SignInService, useValue: { signin: async () => 'token' } }],
+      providers: [
+        {
+          provide: SignInService,
+          useValue: { signin: async () => ({ token: 'token', refreshToken: 'refreshToken' }) },
+        },
+      ],
     }).compile();
 
     controller = module.get<SignInController>(SignInController);
@@ -20,6 +25,6 @@ describe('SignInController', () => {
 
   it('should singin user', async () => {
     const response = await controller.signin({ email: 'test@gmail.com', password: 'test' });
-    expect(response).toEqual({ token: 'token' });
+    expect(response).toEqual({ token: 'token', refreshToken: 'refreshToken' });
   });
 });

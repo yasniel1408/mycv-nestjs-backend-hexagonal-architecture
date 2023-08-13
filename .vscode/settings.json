@@ -1,41 +1,4 @@
 {
-    "sqltools.connections": [
-        {
-            "mysqlOptions": {
-                "authProtocol": "default",
-                "enableSsl": "Disabled"
-            },
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 3306,
-            "driver": "MySQL",
-            "name": "plv-prod",
-            "username": "prd-ua-global-looker-omni",
-            "database": "pv_applications"
-        },
-        {
-            "previewLimit": 50,
-            "driver": "SQLite",
-            "name": "db",
-            "database": "${workspaceFolder:messages-nestjs-backend}/db.sqlite"
-        },
-        {
-            "mysqlOptions": {
-                "authProtocol": "default",
-                "enableSsl": "Disabled"
-            },
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 3306,
-            "driver": "MySQL",
-            "name": "container-mysql",
-            "database": "db",
-            "username": "user",
-            "password": "password"
-        }
-    ],
-    "sqltools.useNodeRuntime": true,
-
     // Configurar variables de entorno para rest-client
     "rest-client.environmentVariables": {
         "$shared": {
@@ -44,11 +7,13 @@
         },
         "local": {
             "host": "localhost:3000",
-            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoieWFzbmllbEBnbWFpbC5jb20iLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjkxNzI2ODk0fQ.WrXDuyxUsKEqshnAj3L8xFL9MtgNnkPMK50P75crTu0",
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoieWFzbmllbEBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTE4OTEwNzksImV4cCI6MTY5MTg5MTEzOX0.JKsZlD_z_7XM1-Kw62md49SHzES8zEm48ZzUc0cUWAE",
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoieWFzbmllbEBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTE4OTEwNzksImV4cCI6MTY5NDQ4MzA3OX0.zi6rqlI63qGr8MR33kumVQpaDukRAO3HW5do7eGNQ94"
         },
         "production": {
             "host": "example.com",
             "token": "",
+            "refreshToken": "",
         }
     }
 }
