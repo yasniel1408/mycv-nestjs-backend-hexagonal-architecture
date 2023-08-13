@@ -5,17 +5,20 @@ export class UserDao {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
   password: string;
 
-  @Column({ default: false })
+  @Column({ default: true })
   isAdmin: boolean;
 
-  @Column({ nullable: true })
-  refreshToken?: string;
+  @Column({
+    nullable: true,
+    length: 500,
+  })
+  refreshToken: string;
 
   @CreateDateColumn()
   createdAt: Date;

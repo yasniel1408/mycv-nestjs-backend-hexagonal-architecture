@@ -1,5 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { RefreshTokenController } from './refresh-token.controller';
+import { JwtFacadeService } from '@auth/application/jwt-facade/jwt.facade.service';
 
 describe('RefreshTokenController', () => {
   let controller: RefreshTokenController;
@@ -7,7 +8,12 @@ describe('RefreshTokenController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [RefreshTokenController],
-      providers: [],
+      providers: [
+        {
+          provide: JwtFacadeService,
+          useValue: { createJwtAndRefreshToken: async () => ({ token: '', refreshToken: '' }) },
+        },
+      ],
     }).compile();
 
     controller = module.get<RefreshTokenController>(RefreshTokenController);

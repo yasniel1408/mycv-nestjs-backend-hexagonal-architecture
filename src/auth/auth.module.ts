@@ -19,6 +19,7 @@ import { ValidateUserService } from './application/validate-user/validate-user.s
 import { EncryptionFacadeService } from './application/encryption-facade/encryption.facade.service';
 import { JwtFacadeService } from './application/jwt-facade/jwt.facade.service';
 import { RefreshTokenController } from './infrastructure/adapters/primary/http/refresh-token/refresh-token.controller';
+import { RefreshTokenService } from './application/refresh-token/refresh-token.service';
 
 @Module({
   imports: [
@@ -51,6 +52,7 @@ import { RefreshTokenController } from './infrastructure/adapters/primary/http/r
     JwtFacadeService,
     CreateUserService,
     AuthRepository,
+    RefreshTokenService,
     // {
     //   provide: APP_INTERCEPTOR, // Interceptor para recuperar la información del usuario fresca de la base de datos
     //   useClass: CurrentUserInterceptor,

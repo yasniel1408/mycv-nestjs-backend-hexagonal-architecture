@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ValidateUserService } from '../validate-user/validate-user.service';
 import { JwtFacadeService } from '../jwt-facade/jwt.facade.service';
 import { AuthRepository } from '@auth/infrastructure/adapters/secondary/db/user.repository';
+import { UserDao } from '@auth/infrastructure/adapters/secondary/db/dao/user.dao';
 
 @Injectable()
 export class SignInService {
@@ -12,13 +13,13 @@ export class SignInService {
   ) {}
 
   async signin(email: string, password: string): Promise<{ token: string; refreshToken: string }> {
-    const user = await this.validateUserService.validate(email, password);
+    const user: UserDao = await this.validateUserService.validate(email, password);
 
     const { token, refreshToken } = await this.jwtFacadeService.createJwtAndRefreshToken(user);
 
     Object.assign(user, { refreshToken }); // le asignamos lo que esta en attrs a lo que esta en user
 
-    await this.userRepository.save(user);
+    await this.userRepository.save(user as UserDao);
 
     return { token, refreshToken };
   }
