@@ -7,8 +7,8 @@
         },
         "local": {
             "host": "localhost:3000",
-           "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ5YXNuaWVsQGdtYWlsLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2OTE4OTkyMTIsImV4cCI6MTY5MTg5OTI0Mn0.OqHinZDQImrhD5oOZKqpzlUFgF379t6fjGPcvex9SUk",
-  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ5YXNuaWVsQGdtYWlsLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2OTE4OTkyMTIsImV4cCI6MTY5NDQ5MTIxMn0.YWT0YZ1L2SHCeG9_RWE3Z6-5JZtrRYpzNT3HWwGV9nE"
+           "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ5YXNuaWVsQGdtYWlsLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2OTIwMTk2NzEsImV4cCI6MTY5MjYyNDQ3MX0.Sfg8CUqwV_RNAXJ7mMjavvoszwNOaePbHQjkD6kyXzk",
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ5YXNuaWVsQGdtYWlsLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2OTIwMTk2NzEsImV4cCI6MTY5NDYxMTY3MX0.YAYaZHg3Z20Eg_zYDl-nMOMrHMbD42J_-SPEIMkhyrU"
         },
         "production": {
             "host": "example.com",

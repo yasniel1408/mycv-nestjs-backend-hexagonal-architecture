@@ -21,7 +21,7 @@ export class JwtFacadeService {
   }
 
   async createJwtAndRefreshToken(user) {
-    const token = await this.createJwt(user, '30s');
+    const token = await this.createJwt(user, '7d');
 
     const refreshToken = await this.createJwt(user, '30d');
 

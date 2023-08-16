@@ -6,9 +6,9 @@ Authorization: Bearer {{token}}
 {
   "make": "Ferrary",
   "model": "WUIG78",
-  "year": 2023,
-  "mileage": 200,
-  "lng": 12,
-  "lat": 12,
-  "price": 54654
+  "year": 2022,
+  "mileage": 100,
+  "lng": 45,
+  "lat": 45,
+  "price": 324
 }

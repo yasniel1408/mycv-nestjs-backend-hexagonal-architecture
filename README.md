@@ -32,3 +32,37 @@ Y los **adaptadores** son precisamente la forma de conectar el exterior con los 
 - Proyectos con tiempos de vida muy largos
 - Necesidad de una mayor flexibilidad en cuanto a tegnologias.
 - Equipos relativamente expertos, almenos deberia haber 1 o 2 expertos en la arquitectura.
+
+## TypeORM Migration Comands
+
+Si una entidad dao cambia deberiamos generar un cambio en nuestras migracionesy de esta manera
+va quedando un registro de cambios en la base de datos.
+
+Si algo sale mal podemos ejecutar revert
+
+Si cambia algo en algun dao, se debe generara un nueva migracion y luego esto se correra en el servidor de integracion continua.
+
+1- You can create a new migration using CLI:
+
+```
+typeorm migration:create migrations/migrationName
+
+```
+
+2- Generate migration from entities:
+
+```
+ npm run typeorm migration:generate -- src/config/db/migrations/NewMigration
+```
+
+3- To execute all pending migrations use following command:
+
+```
+typeorm migration:run -- -d src/config/db/migrations
+```
+
+4- Revertir cambios
+
+```
+typeorm migration:revert -- -d src/config/db/migrations
+```

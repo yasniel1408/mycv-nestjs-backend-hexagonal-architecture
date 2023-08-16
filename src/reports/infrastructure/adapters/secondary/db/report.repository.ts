@@ -30,4 +30,21 @@ export class ReportRepository implements IReportRepositoryInterface<ReportDao> {
   remove(entity: ReportDao, options?: RemoveOptions): Promise<ReportDao> {
     return this.repository.remove(entity, options);
   }
+
+  // Estimado Promedio de precio de un auto
+  getByQueryBuilder(query: Partial<ReportDao>): Promise<any> {
+    return this.repository
+      .createQueryBuilder()
+      .select('AVG(price)', 'price')
+      .where('make=:make', { make: query.make })
+      .orWhere('model=:model', { model: query.model })
+      .orWhere('year - :year', { year: query.year })
+      .orWhere('lng - :lng BETWEEN -5 AND +5', { lng: query.lng })
+      .orWhere('lat - :lat BETWEEN -3 AND +3', { lat: query.lat })
+      .andWhere('approved IS TRUE')
+      .orderBy('ABS(mileage - :mileage)', 'DESC')
+      .setParameters({ mileage: query.mileage }) // esto es por el orderBy
+      .limit(3)
+      .getRawOne();
+  }
 }

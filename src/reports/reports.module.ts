@@ -6,10 +6,12 @@ import { CreateReportService } from './application/create-report/create-report.s
 import { ReportRepository } from './infrastructure/adapters/secondary/db/report.repository';
 import { ApprovedReportController } from './infrastructure/adapters/primary/http/approved-report/approved-report.controller';
 import { ApprovedReportService } from './application/approved-report/approved-report.service';
+import { GetEstimateController } from './infrastructure/adapters/primary/http/get-estimate/get-estimate.controller';
+import { GetEstimateService } from './application/get-estimate/get-estimate.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ReportDao])],
-  providers: [CreateReportService, ReportRepository, ApprovedReportService],
-  controllers: [CreateReportController, ApprovedReportController],
+  providers: [CreateReportService, ReportRepository, ApprovedReportService, GetEstimateService],
+  controllers: [CreateReportController, ApprovedReportController, GetEstimateController],
 })
 export class ReportsModule {}
