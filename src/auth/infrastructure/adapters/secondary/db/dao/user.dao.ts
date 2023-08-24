@@ -11,6 +11,12 @@ export class UserDao {
   @Column()
   password: string;
 
+  @Column({
+    unique: false,
+    nullable: true,
+  })
+  name?: string;
+
   @Column({ default: true })
   isAdmin: boolean;
 

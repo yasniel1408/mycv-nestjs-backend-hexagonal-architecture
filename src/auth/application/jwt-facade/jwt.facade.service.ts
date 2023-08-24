@@ -29,7 +29,7 @@ export class JwtFacadeService {
   }
 
   async createJwt(user: any, expiresIn: string): Promise<string> {
-    const payload = { id: user.id, email: user.email, isAdmin: user.isAdmin };
+    const payload = { id: user.id, email: user.email, name: user.name, isAdmin: user.isAdmin };
 
     return await this.jwtService.signAsync(payload, {
       secret: this.configService.getOrThrow<string>('JWT_KEY'),

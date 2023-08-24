@@ -9,7 +9,6 @@ export class GetEstimateService {
 
   async getEstimate(query: GetEstimateRequestDto): Promise<GetEstimateResponseDto> {
     const price: GetEstimateResponseDto = await this.reportRepository.getByQueryBuilder(query);
-    console.log(price);
     return price;
   }
 }

@@ -1,16 +1,17 @@
 import { EMAIL_PATTERN } from '@users/constants';
 import { ValueObjectBase } from './value-object-base.abstract';
+import { ValueRequiredError } from '../errors/value-required-error';
 
 export class EmailValueObject extends ValueObjectBase<string> {
   constructor(value: string) {
     super(value);
     this.setPattern(EMAIL_PATTERN);
     if (!value) {
-      throw new Error('Email is required');
+      throw new ValueRequiredError('email');
     }
 
     if (!this.isValid(value)) {
-      throw new Error('Email is invalid');
+      throw new ValueRequiredError('email');
     }
   }
 
