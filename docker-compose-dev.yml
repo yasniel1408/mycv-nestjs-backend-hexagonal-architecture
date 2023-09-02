@@ -8,6 +8,7 @@ services:
       dockerfile: ./docker/development.Dockerfile
     environment:
       EXAMPLE: example
+    command: ['npm', 'run', 'typeorm migration:run -- -d src/config/db/migrations']
     depends_on:
       - db
     ports:
