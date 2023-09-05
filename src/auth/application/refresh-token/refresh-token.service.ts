@@ -18,7 +18,7 @@ export class RefreshTokenService {
 
     const { token, refreshToken: newRefreshToken } = await this.jwtFacadeService.createJwtAndRefreshToken(user);
 
-    Object.assign(user, { refreshToken: newRefreshToken }); // le asignamos lo que esta en attrs a lo que esta en user
+    Object.assign(user, { refreshToken: newRefreshToken });
 
     await this.userRepository.save(user);
 
